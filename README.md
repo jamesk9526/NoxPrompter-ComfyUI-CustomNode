@@ -14,6 +14,9 @@ A powerful collection of custom nodes for ComfyUI that enhance prompt handling, 
 - **Adaptive Keyword Controls**: Switch between auto, inline, or compact keyword formatting, randomize missing selections with seeds, and override palettes inline
 - **NSFW Prompt Designer**: Assemble mature-oriented prompts with curated safeguards, automatic baselines, and safety guidance
 
+<img width="805" height="798" alt="image" src="https://github.com/user-attachments/assets/480a1bbc-fa04-4722-80bc-88f3ccc4918f" />
+
+
 ## 📦 Installation
 
 ### Method 1: Git Clone (Recommended)
