@@ -1,275 +1,152 @@
 # ComfyUI Nox Prompter
 
-A powerful collection of custom nodes for ComfyUI that enhance prompt handling, manipulation, and analysis for better AI image generation results.
+Modular prompt-engineering tools for ComfyUI that turn cinematic ideas into production-ready text blocks, complete with palette controls, safety rails, and workflow guidance.
 
-## 🌟 Features
+> **TL;DR**: Drop the folder into `ComfyUI/custom_nodes`, restart ComfyUI, and look for the **NoxPrompter** category. Need to verify the install? Run `python test_nodes.py` from this directory.
 
-- **Formula-driven Prompt Builder**: Assemble cinematic Wan 2.2 prompts with guided subject, scene, motion, aesthetic, and style controls
-- **Palette + Narrative Companions**: Use the Palette Mixer and Narrative Weaver to seed builder inputs with curated palettes and story scaffolding
-- **Prompt Enhancement**: Automatically enhance prompts with style-specific additions and quality tags
-- **Prompt Combination**: Combine multiple prompts using various blending modes
-- **Prompt Analysis**: Analyze prompt characteristics, complexity, and style detection
-- **Emphasis Control**: Apply emphasis and de-emphasis to prompts using weights
-- **Curated Keyword Palettes**: Built-in lighting, camera, motion, emotion, and stylization vocabularies for rapid iteration
-- **Adaptive Keyword Controls**: Switch between auto, inline, or compact keyword formatting, randomize missing selections with seeds, and override palettes inline
-- **NSFW Prompt Designer**: Assemble mature-oriented prompts with curated safeguards, automatic baselines, and safety guidance
+![Nox Prompter nodes in ComfyUI](https://github.com/user-attachments/assets/480a1bbc-fa04-4722-80bc-88f3ccc4918f)
 
-<img width="805" height="798" alt="image" src="https://github.com/user-attachments/assets/480a1bbc-fa04-4722-80bc-88f3ccc4918f" />
+## Highlights
 
+- **18 purpose-built nodes** spanning builders, character design, wardrobe, lighting, NSFW safeguards, streaming prompts, and pipeline organization.
+- **Formula-driven Wan 2.2 builder** with curated lighting, motion, composition, and stylization vocabularies plus inline overrides and randomization.
+- **Preset-friendly companions** – every major node supports save/load/list actions so you can build libraries of looks, poses, palettes, and camera moves.
+- **Consistency tooling** – Narrative Weaver, Palette Mixer, Organizer, and Pipeline Combiner keep every fragment aligned, with automatic contradiction warnings.
+- **Safety-first NSFW workflow** – mature prompts include baseline negatives, safety notes, and an NSFW AIO fusion node to merge designer + action outputs responsibly.
+- **Single-script smoke test** – `test_nodes.py` exercises the entire suite, validating node registration, preset behaviors, and safety defaults before you hit render.
 
-## 📦 Installation
+## Node Catalog
 
-### Method 1: Git Clone (Recommended)
-1. Navigate to your ComfyUI `custom_nodes` directory
-2. Clone this repository:
-   ```bash
-   git clone https://github.com/yourusername/ComfyNoxPrompter.git
-   ```
-3. Restart ComfyUI
+### Onboarding & Organization
+- `NoxPromptUsageGuide` *(NoxPrompter/Guides)* – Generates quickstart or extended documentation (workflow steps, pairings, safety reminders) directly inside ComfyUI.
+- `NoxPromptOrganizer` *(NoxPrompter/Utility)* – Collates fragments from multiple nodes into a readable, ordered prompt, highlights missing sections, and produces a checklist.
 
-### Method 2: Manual Installation
-1. Download the repository as a ZIP file
-2. Extract it to your ComfyUI `custom_nodes` directory
-3. Ensure the folder is named `ComfyNoxPrompter`
-4. Restart ComfyUI
+### Core Builder Stack
+- `NoxPromptBuilder` *(NoxPrompter/Builders)* – Wan 2.2 style prompt assembler with basic/advanced formulas, keyword styling, randomization, and preset storage.
+- `NoxPromptPaletteMixer` *(NoxPrompter/Companions)* – Produces palette override strings, custom keyword bundles, and usage notes from cinematic mood profiles.
+- `NoxPromptNarrativeWeaver` *(NoxPrompter/Companions)* – Outputs subject, scene, motion, hook, and descriptor text blocks from archetype + tone selectors.
+- `NoxPromptCombiner` *(NoxPrompter/Text)* – Blends up to three prompts via concatenate, alternate, blend, or weighted strategies.
+- `NoxPromptEnhancer` *(NoxPrompter/Text)* – Adds emphasis, quality tags, and style packs (artistic, photorealistic, cinematic, fantasy, sci-fi, portrait) to any prompt.
+- `NoxPromptAnalyzer` *(NoxPrompter/Analysis)* – Reports word count, complexity, detected style, sentiment, and optional quick critiques for the provided prompt.
 
-## 🎯 Node Overview
+### Character & Styling Suite
+- `NoxPromptCharacterCreator` *(NoxPrompter/Characters)* – Builds lore-rich hero bios, story hooks, and prompt fragments with presetable archetypes and traits.
+- `NoxPromptHumanDesigner` *(NoxPrompter/Characters)* – Adult anatomy guardrails plus detailed face, body, skin, eye, and pose descriptors with consent messaging.
+- `NoxPromptWardrobeDesigner` *(NoxPrompter/Characters)* – Describes garments, materials, accessories, motion considerations, and styling notes for any wardrobe concept.
 
-### 1. Nox Prompt Builder
-**Category**: `NoxPrompter/Builders`
+### Cinematic Direction
+- `NoxPromptActionDirector` *(NoxPrompter/Direction)* – Crafts kinetic action prompts, summaries, and director notes with camera, tempo, props, and risk guidance.
+- `NoxPromptLightingMaster` *(NoxPrompter/Direction)* – Outputs lighting setups, mood notes, and technical rigging reminders for complex scenes.
+- `NoxPromptCamz` *(NoxPrompter/Direction)* – Streaming-focused prompt generator with persona, stage, overlay, and safety mentions for creator economy workflows.
 
-Build cinematic Wan 2.2 prompts by mixing formulas with curated lighting, camera, motion, emotion, and stylization vocabularies.
+### NSFW Toolkit (Adults Only)
+- `NoxPromptNSFWDesigner` *(NoxPrompter/NSFW)* – Safely assembles sensual prompts with wardrobe, pose, lighting, and explicitness controls plus baseline negatives.
+- `NoxPromptNSFWActionDirector` *(NoxPrompter/NSFW)* – Produces choreography-focused NSFW action prompts, summaries, and consent-oriented safety notes.
+- `NoxPromptNSFWAIO` *(NoxPrompter/NSFW)* – Fuses designer + action outputs into a single prompt/negative/safety stack while deduplicating keywords and warnings.
 
-**Guiding formulas**
-- `Basic Formula` — Subject + Scene + Motion for fast ideation.
-- `Advanced Formula` — Subject (desc) + Scene (desc) + Motion (desc) + Aesthetic controls + Stylization for production-ready prompts.
+### Pipeline Assembly
+- `NoxPromptPipelineCombiner` *(NoxPrompter/Pipeline)* – Weaves every module’s outputs into a production-ready master prompt, negative list, step order, and reference notes with contradiction detection.
 
-**Core inputs**
-- `formula` (DROPDOWN): Choose Basic or Advanced structure
-- `subject_focus`, `scene_setting`, `motion_arc` (STRING): Rich natural-language descriptions
-- `narrative_hook`, `model_emphasis` (STRING, Optional): Extra beats or feature emphasis
-- `keyword_style` (auto, inline, compact): Control how curated keywords appear in the assembled prompt
-- `randomize_missing` + `random_seed`: Auto-fill "None" selections with curated palette picks
-- `palette_overrides`: Inline overrides (e.g. `light_source: Moonlight, Firelight`) that merge with dropdown selections
-- `extra_descriptors`, `custom_keywords`, `prompt_prefix`, `prompt_suffix` (STRING, Optional)
-- `negative_prompt` (STRING, Optional): Direct output channel for Wan 2.2 negatives
+## Installation
 
-**Keyword palettes**
-- *Aesthetic controls*: Light Source, Light Quality, Time of Day, Shot Size, Composition, Lens Focal Length, Lens Angle, Lens Shot Type, Color Tone
-- *Dynamics*: Motion Type (running, skateboarding, soccer, tennis, ping pong, skiing, basketball, football, bowl dance, cartwheel), Emotion (anger, fear, joy, sadness, surprise), Camera Moves (push-in, pull-out, pan left/right, tilt up, handheld, compound, following, orbit)
-- *Stylization*: Visual Styles (felt style, 3D cartoon, pixel art, puppet animation, 3D game, claymation, anime, watercolor, B&W animation, oil painting) and Special Effects (tilt-shift, time-lapse)
-- *Overrides & extras*: Merge additional palette lines (`lens_angle: Low Angle | Tilted Angle`) and append bespoke keyword clusters without losing dropdown state
+| Method | Steps |
+| --- | --- |
+| **ComfyUI Manager** | Search for **“Nox Prompter”**, click **Install**, restart ComfyUI. |
+| **Git clone (recommended)** | `cd /path/to/ComfyUI/custom_nodes` → `git clone https://github.com/jamesk9526/ComfyNoxPrompter.git` → restart ComfyUI. |
+| **Manual download** | Download ZIP → extract to `ComfyUI/custom_nodes/ComfyNoxPrompter/` → restart ComfyUI. |
 
-**Outputs**
-- `prompt`: Fully assembled prompt following the selected formula
-- `negative_prompt`: Pass-through of the user-provided negative list
-- `aesthetic_notes`: Summaries of the chosen lighting, camera, and color selections
-- `dynamic_notes`: Summaries of motion, emotion, and camera move selections
+After the restart, right-click the canvas and confirm a **NoxPrompter** category with the nodes listed above. If something is missing, see the [Troubleshooting](#troubleshooting) section.
 
-**Example (Advanced Formula)**
-```
-Prefix: "Wan 2.2 cinematic prompt"
-Subject: "Battle-hardened warrior drenched in rain, leather armor and fur"
-Scene: "Muddy battlefield at night, lightning on the horizon"
-Motion: "Charges forward roaring, blade swings in slow-motion crash zoom"
-Aesthetic Picks: Daylight · Soft Light · Dusk · Medium Close-up · Balanced · Medium focal · Low angle · Single shot · Warm tone
-Dynamics: Running · Anger · Push-in · Orbit
-Stylization: Anime · Tilt-shift
-Custom Keywords: "heroic energy, epic storytelling"
+## Quickstart Workflow
 
-Result → A multi-sentence prompt with labeled cinematic palette, motion & camera clause, stylization clause, keyword styling control, and appended custom keywords — ready to paste into Wan 2.2.
+1. **Ask the Usage Guide** – Drop `NoxPromptUsageGuide`, set `detail_level = Extended`, and review the generated workflow and safety pointers in ComfyUI.
+2. **Define your hero** – Chain `NoxPromptCharacterCreator → NoxPromptHumanDesigner → NoxPromptWardrobeDesigner` to lock identity, anatomy, and wardrobe language.
+3. **Seed the narrative** – Use `NoxPromptNarrativeWeaver` for subject/scene/motion text, and `NoxPromptPaletteMixer` for palette overrides + keywords.
+4. **Assemble the master prompt** – Feed the outputs into `NoxPromptBuilder` (Advanced Formula) and optionally enable `randomize_missing` with a seed for repeatable variations.
+5. **Polish or enhance** – Run the builder result through `NoxPromptEnhancer` or `NoxPromptCombiner` to layer styles, emphasis, or alternate prompts.
+6. **Add direction** – `NoxPromptActionDirector` and/or `NoxPromptLightingMaster` create dedicated camera + lighting clauses; `NoxPromptCamz` covers streaming personas.
+7. **Safety-check NSFW work** – For mature scenes, route through `NoxPromptNSFWDesigner` and optionally `NoxPromptNSFWActionDirector`, then merge with `NoxPromptNSFWAIO`.
+8. **Finalize and organize** – Use `NoxPromptPipelineCombiner` to merge every fragment into a single prompt package, then optionally tidy with `NoxPromptOrganizer` before sending to your sampler.
 
-### 2. Nox Prompt Palette Mixer
-**Category**: `NoxPrompter/Companions`
+## Detailed Usage
 
-Curate palette overrides and keyword clusters without touching spreadsheets. Pick a cinematic mood, dial intensity, and optionally add your own override lines — the mixer outputs ready-to-paste builder overrides and matching keyword suggestions.
+### Builder & Companion Trio
+- **Narrative Weaver → Palette Mixer → Prompt Builder** gives you richly described subject/scene/motion text plus cinematic palette overrides in seconds.
+- Set `keyword_style` to **auto** for labeled clauses, **inline** for free-flow descriptions, or **compact** for dense Wan 2.2 strings.
+- Turn on `randomize_missing` when dropdowns are left at “None”; the combination of curated vocabularies and seeded randomness is great for ideation batches.
 
-**Inputs**
-- `mood_profile`: Curated looks (Moody Nightfall, Action Spotlight, Dreamscape Glow)
-- `intensity`: Blends in advanced overrides and keywords when pushed above 0.6
-- `include_effects`: Toggle built-in special effects additions
-- `custom_palette`: Extra override lines or keywords that merge with the result
+### Character & Wardrobe Stack
+- The character trio outputs three synchronized strings: a hero prompt, a formatted sheet, and story hooks. Feed the prompt into the Builder, keep the sheet for production notes, and park the hooks in your project management tool.
+- `NoxPromptHumanDesigner` automatically appends adult-consent language and negative prompts. You can substitute your own copy via `consent_language` and `safety_addendum` fields.
+- Wardrobe Designer exports the hero look, a bullet list of styling notes, and an accessories-only string. Route the prompt into the Builder or Combiner and hand the accessory list to your prop artist.
 
-**Outputs**
-- `palette_overrides`: Multi-line text (e.g. `light_source: Moonlight, Practical Light`)
-- `custom_keywords`: Comma-separated keywords to feed into the builder
-- `notes`: Helpful summary of the chosen profile, intensity, and effects
+### Directional Nodes
+- `NoxPromptActionDirector` and `NoxPromptNSFWActionDirector` share a schema: defaults cover preset combos, while every control offers a “Custom Input” field when you need bespoke language.
+- Lighting Master produces three parallel outputs (prompt, mood notes, technical notes). Feed the prompt to the Builder or Pipeline Combiner, and keep the technical notes for your lighting checklist.
+- `NoxPromptCamz` focuses on creator economy scenarios (persona, stage theme, overlays). Disable `include_negative_baseline` if downstream automation already injects safety negatives.
 
-### 3. Nox Prompt Narrative Weaver
-**Category**: `NoxPrompter/Companions`
+### NSFW Flow (Adults Only)
+- Keep `include_negative_baseline` and `include_safety_note` enabled unless you have verified policy tooling downstream. They block underage terms, coercion, non-consensual language, and extreme anatomy references by default.
+- `NoxPromptNSFWActionDirector` adds choreography and consent beats. Hand its `action_prompt` to the Builder or Combiner, and archive the `safety_notes` for compliance logs.
+- `NoxPromptNSFWAIO` merges designer + director outputs, deduplicates negatives, and ensures safety notes stay intact. It also accepts extra positives/negatives if you have studio-specific rules.
 
-Generate narrative scaffolding — subject focus, scene setting, motion arc, narrative hook, and extra descriptors — from cinematic archetypes, tones, environments, set pieces, and tempo profiles.
+### Pipeline Assembly & Organization
+- `NoxPromptPipelineCombiner` stitches builder output, character data, wardrobe pieces, narrative text, action notes, lighting cues, NSFW notes, and custom strings into a single master prompt. It also produces:
+   - Aggregated negative list (merging builder, enhancer, NSFW baselines, etc.).
+   - Pipeline order referencing every node used (matches the Usage Guide’s recommendations).
+   - Reference notes grouped by theme (camera, motion, palette, safety) with contradiction warnings when descriptors disagree.
+- `NoxPromptOrganizer` is perfect for presentation. Select a structure mode (Builder-first, Narrative-first, Lighting-first), and it will output a formatted prompt, a missing-section list, and a quick overview for review sessions.
 
-**Inputs**
-- `hero_archetype`: e.g. Resolute Protector, Wandering Visionary, Arcane Duelist
-- `story_tone`: e.g. Hopeful Resurgence, Brooding Tension, Whimsical Discovery
-- `environment`: e.g. Rain-Soaked Citadel, Skybound Orchard, Desert Mirage Bazaar
-- `set_piece`: Action beats such as Climactic Duel, Heist Dash, Revelation Stillness
-- `tempo`: Motion cadence presets (slow burn, measured build, surging, frantic)
-- `focus_detail`: Extra keywords folded into the descriptor stack
+### Preset Manager (Shared Behavior)
+- Most nodes expose `preset_action` (`none`, `save`, `load`, `list`) and `preset_name`. These hook into the shared `PresetManager` to store JSON presets under `ComfyNoxPrompter/presets/<node_name>/`.
+- Typical flow:
+   1. Configure the node, set `preset_action = save`, choose a `preset_name`, and execute once.
+   2. Switch to `preset_action = load` (or `list`) to recall the configuration on future runs.
+- Presets are simple text files—commit them alongside your project or share them with teammates.
 
-**Outputs**
-- `subject_focus`, `scene_setting`, `motion_arc`, `narrative_hook`, `extra_descriptors` — each aligns directly with builder inputs
-```
+## Verification & Tests
 
-### 4. Nox Prompt Enhancer
-**Category**: `NoxPrompter/Text`
+Run the bundled regression script any time you update the repository or tweak presets:
 
-Enhances your base prompt with style-specific additions, quality tags, and emphasis control.
-
-**Inputs**:
-- `base_prompt` (STRING): Your main prompt text
-- `enhancement_mode` (DROPDOWN): Choose from artistic, photorealistic, cinematic, fantasy, sci-fi, portrait, or none
-- `emphasis_strength` (FLOAT 0.0-2.0): Control emphasis level using parentheses syntax
-- `add_quality_tags` (BOOLEAN): Automatically add quality enhancement tags
-- `secondary_prompt` (STRING, Optional): Additional prompt to combine
-- `negative_prompt` (STRING, Optional): Negative prompt input
-- `custom_style` (STRING, Optional): Your own custom style additions
-
-**Outputs**:
-- `enhanced_prompt` (STRING): The enhanced version of your prompt
-- `negative_prompt` (STRING): Processed negative prompt
-
-**Example Usage**:
-```
-Input: "a cat sitting on a chair"
-Enhancement Mode: "photorealistic"
-Emphasis Strength: 1.3
-Add Quality Tags: True
-
-Output: "((a cat sitting on a chair)), photorealistic, highly detailed, sharp focus, professional photography, high quality, detailed, masterpiece, 8k uhd, dslr, soft lighting, high quality"
+```powershell
+cd C:\Users\James\Documents\GitHub\ComfyNoxPrompter
+python test_nodes.py
 ```
 
-### 5. Nox Prompt Combiner
-**Category**: `NoxPrompter/Text`
+The script validates node registration, prompt outputs, preset save/load flows, safety baselines, and the pipeline sequence. All tests should pass before shipping to production pipelines.
 
-Combines multiple prompts using different blending strategies.
+## File Structure
 
-**Inputs**:
-- `prompt_1` (STRING): First prompt
-- `prompt_2` (STRING): Second prompt
-- `combination_mode` (DROPDOWN): concatenate, blend, alternate, or weighted
-- `weight_1` (FLOAT 0.0-2.0): Weight for first prompt (in weighted mode)
-- `weight_2` (FLOAT 0.0-2.0): Weight for second prompt (in weighted mode)
-- `prompt_3` (STRING, Optional): Third prompt
-- `separator` (STRING, Optional): Custom separator (default: ", ")
-
-**Outputs**:
-- `combined_prompt` (STRING): The combined result
-
-**Combination Modes**:
-- **Concatenate**: Simple joining with separator
-- **Blend**: Interleave words from different prompts
-- **Alternate**: Alternate sentences between prompts
-- **Weighted**: Apply emphasis/de-emphasis based on weights
-
-### 6. Nox Prompt Analyzer
-**Category**: `NoxPrompter/Analysis`
-
-Analyzes prompt characteristics and provides detailed feedback.
-
-**Inputs**:
-- `prompt` (STRING): Prompt to analyze
-- `analysis_type` (DROPDOWN): word_count, complexity, style_detection, or full_analysis
-
-**Outputs**:
-- `analysis_result` (STRING): Detailed analysis text
-- `word_count` (INT): Number of words in the prompt
-- `complexity_score` (FLOAT): Complexity rating (0-10)
-
-**Analysis Features**:
-- Word count and length categorization
-- Complexity scoring based on vocabulary and uniqueness
-- Style detection (photorealistic, artistic, anime, cinematic, etc.)
-- Sentiment analysis (positive, negative, neutral)
-
-### 7. Nox Prompt NSFW Designer
-**Category**: `NoxPrompter/NSFW`
-
-Crafts mature-oriented prompts with curated tone, wardrobe, and safety guards. The node blends tasteful descriptors with required baselines so you can focus on creative direction while staying compliant.
-
-**Inputs**
-- `subject_focus`, `scene_setting` (STRING): Core concept and environment
-- `pose_profile`, `wardrobe_style`, `tone_profile` (DROPDOWN): Curated NSFW personas and moods
-- `lighting_setup`, `camera_framing`, `explicitness_level` (DROPDOWN, Optional): Fine-tune lighting, lensing, and intensity while auto-managing negatives
-- `detail_accent`, `nsfw_tags` (STRING, Optional): Extra descriptors and keyword clusters
-- `negative_prompt` (STRING, Optional): Merge your own negatives with the safeguarded baseline
-- `include_negative_baseline`, `include_safety_note` (BOOLEAN): Toggle the automatic guardrails
-
-**Outputs**
-- `prompt`: Fully assembled NSFW-ready prompt with pose, wardrobe, lighting, and framing
-- `negative_prompt`: Combined baseline+user list that filters underage, violent, or explicit anatomical extremes
-- `safety_notes`: Quick reminders sourced from the chosen profiles plus a compliance headline
-
-**Safety Features**
-- Baseline negatives covering underage, coercive, or graphic subject matter
-- Explicitness-level aware negatives to keep anatomy references tasteful
-- Contextual notes explaining how to keep the scene respectful and compliant
-
-## 🎨 Style Presets
-
-### Enhancement Modes Available:
-- **Artistic**: Adds painterly, expressive elements
-- **Photorealistic**: Focuses on realistic photography terms
-- **Cinematic**: Movie and film-style enhancements
-- **Fantasy**: Magical and mystical elements
-- **Sci-Fi**: Futuristic and technological terms
-- **Portrait**: Professional portrait photography focus
-
-## 💡 Usage Tips
-
-1. **Pick the formula first**: Choose Basic for brainstorming or Advanced for full cinematic structure
-2. **Seed with companions**: Use the Narrative Weaver and Palette Mixer to generate builder-ready inputs in seconds
-3. **Tune keyword style**: Swap between auto, inline, or compact keyword presentation depending on downstream needs
-4. **Randomize wisely**: Enable `randomize_missing` with a fixed seed to explore alternates while staying reproducible
-5. **Layer keyword palettes**: Mix lighting, camera, motion, emotion, and style options to rapidly explore looks
-6. **Layered Enhancement**: Feed the builder output into the Prompt Enhancer for stylistic polish
-7. **Analysis Feedback**: Use the Analyzer to understand your prompt characteristics before enhancement
-8. **Weight Control**: In the Combiner, weights > 1.0 add emphasis while < 1.0 reduce it
-9. **Negative Prompts**: Both the Builder and Enhancer accept negative prompts so you can enforce consistency
-10. **Custom Styles**: Use `custom_keywords`, `extra_descriptors`, or the Enhancer `custom_style` input to inject project-specific flavor
-11. **Guard NSFW work**: Route mature concepts through the NSFW Designer to leverage curated baselines, safety notes, and explicitness controls before sharing outputs
-
-## 🔧 Technical Details
-
-### File Structure:
 ```
 ComfyNoxPrompter/
-├── __init__.py                 # Node registration
-├── NoxPromptNode.py           # Main node implementations (builder, NSFW designer, palette mixer, narrative weaver, enhancer, combiner, analyzer)
-├── README.md                  # This documentation
-├── INSTALLATION.md            # Quick install reference
-├── test_nodes.py              # Offline sanity tests for each node
-├── examples/                  # Example workflows
-└── LICENSE                    # License file
+├── __init__.py                # ComfyUI entry point
+├── NoxPromptNode.py           # Legacy aggregator with resilient imports
+├── INSTALLATION.md            # Install cheat sheet
+├── README.md                  # You are here
+├── test_nodes.py              # Offline regression tests
+├── examples/README.md         # Sample workflows and diagrams
+├── noxprompter/               # Modular package (common utilities, constants, node modules)
+└── LICENSE
 ```
 
-### Dependencies:
-- ComfyUI (obviously!)
-- Python 3.7+
-- No additional packages required - uses only Python standard library
+## Troubleshooting
 
-## 🤝 Contributing
+- **Nodes missing after restart** – Make sure the folder name is exactly `ComfyNoxPrompter`. Restart ComfyUI completely after copying or updating.
+- **`ModuleNotFoundError: noxprompter`** – The aggregator now injects its path automatically, but if you renamed folders, ensure `NoxPromptNode.py` sits beside the `noxprompter/` package.
+- **Preset files not saving** – Verify the process has write access to `ComfyNoxPrompter/presets`. Presets are stored per node (e.g., `presets/prompt_builder/<name>.json`).
+- **Negative prompts missing safety terms** – Double-check the NSFW nodes’ baseline toggles and avoid trimming the negative string downstream.
+- **Need examples** – See `examples/README.md` for wiring diagrams and step-by-step walkthroughs.
 
-Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
+## Contributing & Support
 
-## 📄 License
+- Open issues or feature ideas on the [GitHub tracker](https://github.com/jamesk9526/ComfyNoxPrompter/issues).
+- Run `python test_nodes.py` before submitting a pull request so maintainers can reproduce your results quickly.
+- For private questions or collaboration, feel free to open a discussion thread in the repository.
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+## License
 
-## 🙏 Acknowledgments
-
-- ComfyUI community for the excellent framework
-- Inspired by the guide from traugdor90 on creating custom nodes
-- All the prompt engineering enthusiasts who make AI art better
-
-## 📞 Support
-
-If you encounter any issues or have questions:
-1. Check the [Issues](https://github.com/yourusername/ComfyNoxPrompter/issues) page
-2. Create a new issue with detailed information about your problem
-3. Include your ComfyUI version and any error messages
+Released under the MIT License. See `LICENSE` for full terms.
 
 ---
 
-**Happy Prompting! 🎨✨**
+**Happy prompting! Build cinematic stories, stay consistent, and keep every node in sync.**
