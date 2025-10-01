@@ -1852,6 +1852,18 @@ CHARACTER_ROLE_OPTIONS = {
 
 WARDROBE_BASE_GARMENT_OPTIONS = {
     "Battle Dress": {"prompt": "battle dress core, reinforced bodice, articulated plating", "notes": "Armor-meets-fashion silhouette balancing protection and movement."},
+    "yoga Pants & Tank": {"prompt": "stretch-fit yoga pants paired with breathable tank top", "notes": "Flexible activewear for dynamic poses and fluid motion."},
+    "Evening Suit": {"prompt": "sleek evening suit, tailored fit", " notes": "Sophisticated formalwear with sharp lines and classic elegance."},
+    "jogging Suit": {"prompt": "lightweight jogging suit, moisture-wicking fabric", "notes": "Sporty ensemble designed for high-energy activity."},
+    "Casual Dress": {"prompt": "flowy casual dress, soft fabric", "notes": "Relaxed yet stylish dress perfect for everyday wear."},
+    "Formal Gown": {"prompt": "elegant formal gown, intricate detailing", "notes": "Luxurious gown designed for high-society events."},
+    "Leather Jacket & Pants": {"prompt": "fitted leather jacket with matching pants", "notes": "Edgy ensemble combining rugged textures with sleek tailoring."},
+    "Evening Dress": {"prompt": "glamorous evening dress, sequined accents", "notes": "Dazzling dress ideal for red carpet appearances."},
+    "Athletic Shorts & Top": {"prompt": "performance athletic shorts with a supportive top", "notes": "Sport-focused outfit for training and competition."},
+    "Combat Gear": {"prompt": "tactical combat gear, reinforced vest, cargo pants", "notes": "Durable outfit built for high-intensity scenarios."},
+    "booty Shorts & Crop Top": {"prompt": "casual booty shorts paired with a trendy crop top", "notes": "Playful summer outfit perfect for warm weather."},
+    "Evening Jumpsuit": {"prompt": "chic evening jumpsuit, sleek silhouette", "notes": "Modern alternative to traditional gowns for formal occasions."},
+
     "Tactical Suit": {"prompt": "nano-fiber tactical suit, segmented plating", "notes": "Flexible tactical suit layered with modular attachment points."},
     "Gala Gown": {"prompt": "cascade gala gown, luminescent panels", "notes": "Statement gown engineered for spotlight drama."},
     "Streetwear Ensemble": {"prompt": "layered streetwear ensemble, asymmetric drape", "notes": "Urban streetwear mixing comfort with avant-garde tailoring."},
@@ -1893,6 +1905,10 @@ WARDROBE_BASE_GARMENT_OPTIONS = {
 }
 
 WARDROBE_LAYER_OPTIONS = {
+    "Base Layer": {"prompt": "form-fitting base layer, moisture-wicking", "notes": "Second skin layer enhancing mobility and comfort."},
+    "Wet Cloth": {"prompt": "wet cloth wrap, clingy texture", "notes": "Damp fabric adding realism to aquatic scenes."},
+    "Tactical Vest": {"prompt": "tactical vest, modular pouches", "notes": "Utility vest designed for quick access to gear."},
+
     "Armor Plating": {"prompt": "layered armor plating, reactive segments", "notes": "Deployable plating that stiffens on impact."},
     "Sheer Overlay": {"prompt": "sheer organza overlay, cascading transparency", "notes": "Gossamer layer that refracts stage lighting."},
     "Draped Cape": {"prompt": "floor-length draped cape, weighted hem", "notes": "Dramatic cloak engineered to billow with motion."},
@@ -1946,6 +1962,10 @@ WARDROBE_FABRIC_OPTIONS = {
 }
 
 WARDROBE_ACCESSORY_OPTIONS = {
+    "necklace": {"prompt": "ornate necklace, layered chains", "notes": "Statement piece drawing attention to the neckline."},
+    "visor": {"prompt": "high-tech visor, HUD display", "notes": "Futuristic eyewear projecting augmented reality."},
+    "sunglasses": {"prompt": "sleek sunglasses, tinted lenses", "notes": "Modern shades adding an air of mystery."},
+    "bracelets": {"prompt": "stacked bracelets, mixed metals", "notes": "Arm adornments clinking with movement."},
     "Relic Pendant": {"prompt": "relic pendant, memory-locked gem", "notes": "Pendant storing ancestral recordings."},
     "Utility Belt": {"prompt": "utility belt, compartmentalized pouches", "notes": "Belt organizing mission-critical tools."},
     "Quantum Bracelets": {"prompt": "quantum-entangled bracelets, flickering runes", "notes": "Linked bracelets enabling instant communication."},
@@ -1971,6 +1991,11 @@ WARDROBE_ACCESSORY_OPTIONS = {
 }
 
 WARDROBE_FOOTWEAR_OPTIONS = {
+    "tennis Shoes": {"prompt": "tennis shoes, cushioned sole", "notes": "Sporty footwear built for agility and comfort."},
+    "no shoes": {"prompt": "bare feet, natural stance", "notes": "Unshod feet connecting directly with the ground."},
+    "Dress Shoes": {"prompt": "polished dress shoes, leather finish", "notes": "Classic formal footwear elevating any outfit."},
+    "Sneakers": {"prompt": "casual sneakers, breathable mesh", "notes": "Comfortable shoes for everyday wear."},
+    "Slip-Ons": {"prompt": "casual slip-ons, elastic side panels", "notes": "Easy-wear shoes for laid-back days."},
     "Combat Boots": {"prompt": "combat boots, reinforced toe, shock absorbers", "notes": "Mil-spec boots tuned for stability."},
     "Hover Heels": {"prompt": "hover heels, anti-grav emitters", "notes": "Levitation-boosted footwear gliding with each step."},
     "Barefoot Wraps": {"prompt": "barefoot wraps, pressure-mapped grip", "notes": "Foot wraps enabling silent movement."},
@@ -2014,25 +2039,22 @@ HUMAN_DESIGN_GENDER_OPTIONS = {
         "prompt": "adult male body",
         "notes": "Male anatomy described with respectful, adult-focused language.",
     },
-    "Adult Nonbinary": {
-        "prompt": "adult nonbinary body",
-        "notes": "Androgynous presentation with mature proportions and subtle balance.",
-    },
     "Adult Androgynous": {
         "prompt": "adult androgynous figure",
         "notes": "Elegant, mature androgyny blending traditionally masculine and feminine cues.",
     },
-    "Adult Genderfluid": {
-        "prompt": "adult genderfluid presence",
-        "notes": "Fluid presentation celebrated through confident, adult styling.",
-    },
-    "Adult Agender": {
-        "prompt": "adult agender body",
-        "notes": "Neutral silhouette minimizing gendered emphasis while remaining distinctly adult.",
-    },
+
 }
 
 HUMAN_DESIGN_HEIGHT_OPTIONS = {
+    "Super Short": {
+        "prompt": "super short height around 4'6\" / 137 cm",
+        "notes": "Very short stature with a compact frame.",
+    },
+    "Super petite": {
+        "prompt": "super petite stature around 5'0\" / 152 cm",
+        "notes": "Very short stature with a compact frame.",
+    },
     "Petite": {
         "prompt": "petite stature around 5'2\" / 157 cm",
         "notes": "Compact height with graceful proportions.",
@@ -2041,6 +2063,17 @@ HUMAN_DESIGN_HEIGHT_OPTIONS = {
         "prompt": "average height near 5'7\" / 170 cm",
         "notes": "Balanced height typical for adult humans.",
     },
+    "Curvy": {
+        "prompt": "curvy frame around 5'5\" / 165 cm",
+        "notes": "Softly rounded proportions with an emphasis on curves.",
+    },
+
+    "Base Male" : {
+        "prompt": "average male height around 5'9\" / 175 cm",
+        "notes": "Standard male proportions with a balanced silhouette.",
+    },
+
+
     "Tall": {
         "prompt": "tall frame around 6'1\" / 185 cm",
         "notes": "Notably tall presence with extended reach.",
@@ -2154,6 +2187,11 @@ HUMAN_DESIGN_BODY_SHAPE_OPTIONS = {
         "prompt": "hourglass proportions, balanced bust and hips, defined waist",
         "notes": "Classic hourglass balance with prominent waist definition.",
     },
+    "Super Model": {
+        "prompt": "super model proportions, tall and slender with long limbs",
+        "notes": "Exaggerated height and length creating a striking silhouette.",
+    },
+
     "Rectangle": {
         "prompt": "rectangular proportions, parallel lines from shoulders to hips",
         "notes": "Athletic straight silhouette with minimal taper.",
@@ -2189,6 +2227,17 @@ HUMAN_DESIGN_BODY_SHAPE_OPTIONS = {
 }
 
 HUMAN_DESIGN_HAIR_LENGTH_OPTIONS = {
+
+    "Short": {
+        "prompt": "short hair, just above the shoulders",
+        "notes": "Chic and easy-to-maintain length with versatile styling options.",
+    },
+
+    "Medium": {
+        "prompt": "medium-length hair, grazing the collarbone",
+        "notes": "Versatile length allowing for various styling options.",
+    },
+
     "Pixie": {
         "prompt": "pixie-length hair cropped close to the scalp",
         "notes": "Playful short crop attracting focus to facial structure.",
@@ -2231,6 +2280,22 @@ HUMAN_DESIGN_HAIR_COLOR_OPTIONS = {
     "Deep Brunette": {
         "prompt": "deep brunette hair with espresso undertones",
         "notes": "Rich brown palette catching warm highlights.",
+    },
+    "Chestnut Brown": {
+        "prompt": "chestnut brown hair with auburn hints",
+        "notes": "Warm brown tones enriched with subtle red undertones.",
+    },
+    "Bimbo Blonde"  : {
+        "prompt": "bimbo blonde hair, bright and eye-catching",
+        "notes": "Vibrant platinum shades with high shine.",
+    },
+    "Ash Brown": {
+        "prompt": "ash brown hair with cool undertones",
+        "notes": "Muted brown spectrum with smoky highlights.",
+    },
+    "Jet Black": {
+        "prompt": "jet black hair, deep and glossy",
+        "notes": "Intense black hue reflecting light beautifully.",
     },
     "Golden Blonde": {
         "prompt": "golden blonde hair with sunlit glow",
@@ -2318,18 +2383,43 @@ HUMAN_DESIGN_HAIR_STYLE_OPTIONS = {
 }
 
 HUMAN_DESIGN_GENITAL_OPTIONS = {
-    "Vulva": {
+    "Vulva Regular": {
         "prompt": "adult vulva anatomy with soft natural contours",
         "notes": "18+ only: describe consensual feminine anatomy respectfully.",
+    },
+    "Vulva Detailed": {
+        "prompt": "detailed adult vulva anatomy with realistic texture",
+        "notes": "18+ only: provide anatomically accurate feminine detail with care.",
+    },
+    "Vulva Detailed Innie"  : {
+        "prompt": "detailed adult vulva anatomy with pronounced inner labia",
+        "notes": "18+ only: focus on inner labial detail with respectful language.",
+    },
+    "Vulva Detailed Outie": {
+        "prompt": "detailed adult vulva anatomy with pronounced outer labia",
+        "notes": "18+ only: focus on outer labial detail with respectful language.",
+    },
+    "Vulva Covered": {
+        "prompt": "covered adult vulva beneath garments",   
+        "notes": "18+ only: indirect reference emphasizing modest coverage.",
+    },
+    "Vulva Regular": {
+        "prompt": "adult vulva anatomy with soft natural contours",
+        "notes": "18+ only: describe consensual feminine anatomy respectfully.",
+    },
+    "Highly Detailed Vulva Close Up" : {
+        "prompt": "highly detailed adult vulva anatomy with intricate texture and shading,  Vulva detail close-up",
+        "notes": "18+ only: provide anatomically accurate feminine detail with care.",
+    },
+    "Highly Detailed Vulva": {
+        "prompt": "highly detailed adult vulva anatomy with intricate texture and shading",
+        "notes": "18+ only: provide anatomically accurate feminine detail with care.",
     },
     "Penis": {
         "prompt": "adult penis anatomy with mature proportion",
         "notes": "18+ only: describe consensual masculine anatomy respectfully.",
-    },
-    "Intersex": {
-        "prompt": "adult intersex anatomy blending traits",
-        "notes": "18+ only: honor intersex bodies with considerate language.",
-    },
+    }, 
+
     "Discrete": {
         "prompt": "discreet reference to adult anatomy without explicit detail",
         "notes": "18+ only: suggest presence subtly, prioritizing tasteful framing.",
@@ -2371,6 +2461,18 @@ HUMAN_DESIGN_EYE_COLOR_OPTIONS = {
     "Amber Luminescence": {
         "prompt": "amber eyes with sunlit flecks",
         "notes": "Warm golden irises catching honeyed highlights.",
+    },
+    "Brown Earth": {
+        "prompt": "rich brown eyes with chocolate depth",
+        "notes": "Deep brown irises exuding grounded warmth.",
+    },
+    "Hazel Glow": {
+        "prompt": "hazel eyes with flecks of green and gold",
+        "notes": "Dynamic hazel tones shifting with light.",
+    },
+    "Grey Mist": {
+        "prompt": "grey eyes with silvery undertones",
+        "notes": "Cool grey irises reflecting soft metallic hues.",
     },
     "Ocean Blue": {
         "prompt": "ocean blue eyes with mirrored sheen",
@@ -2431,12 +2533,44 @@ HUMAN_DESIGN_SKIN_TONE_OPTIONS = {
         "prompt": "cool mocha skin with muted undertone",
         "notes": "Balanced cool-toned brown offering refined softness.",
     },
+    "Alabaster Glow": {
+        "prompt": "alabaster skin with icy undertone",
+        "notes": "Very fair complexion with cool, ethereal highlights.",
+    },
+    "Deep Ebony": {
+        "prompt": "deep ebony skin with rich undertone",
+        "notes": "Luxurious dark complexion exuding radiant depth.",
+    },
+    "Caramel Bronze": {
+        "prompt": "caramel bronze skin with sun-kissed warmth",
+        "notes": "Medium bronze tone glowing with golden highlights.",
+    },
+    "Sandy Taupe": {
+        "prompt": "sandy taupe skin with neutral balance",
+        "notes": "Light brown complexion with balanced warm-cool undertones.",
+    },
+    "Mahogany Rich": {
+        "prompt": "mahogany skin with deep reddish undertone",
+        "notes": "Dark brown complexion enriched with warm red hues.",
+    },
+    "Ivory Silk": {
+        "prompt": "ivory skin with soft peach undertone",
+        "notes": "Light complexion with a hint of warm blush.",
+    },
+    "Bronze Glow": {
+        "prompt": "bronze skin with radiant warmth",
+        "notes": "Medium-dark complexion shimmering with golden highlights.",
+    },
 }
 
 HUMAN_DESIGN_SKIN_DETAIL_OPTIONS = {
     "Soft Glow": {
         "prompt": "skin softly luminous with dewy finish",
         "notes": "Hydrated complexion with ambient light reflection.",
+    },
+    "Realsitic" : {
+        "prompt": "realistic skin with natural texture and pores",
+        "notes": "Authentic skin detail showcasing natural imperfections.",
     },
     "Velvet Matte": {
         "prompt": "skin with velvet matte texture",
@@ -2468,6 +2602,26 @@ HUMAN_DESIGN_BEAUTY_MARK_OPTIONS = {
     "Bare": {
         "prompt": "",
         "notes": "Natural canvas without notable beauty marks.",
+    },
+    "Cheek Spot": {
+        "prompt": "distinct beauty mark on the cheek",
+        "notes": "Classic facial mark adding character and charm.",
+    },
+    "Neck Accent": {
+        "prompt": "subtle beauty mark on the neck",
+        "notes": "Delicate mark enhancing neckline allure.",
+    },
+    "Shoulder Fleck": {
+        "prompt": "small fleck on the shoulder",
+        "notes": "Understated mark adding unique detail.",
+    },
+    "Shoulder Star": {
+        "prompt": "beauty mark shaped like a star on the shoulder",
+        "notes": "Celestial-inspired mark adding whimsical touch.",
+    },
+    "Back Dimple": {
+        "prompt": "tiny dimple beauty mark on the upper back",
+        "notes": "Subtle back detail enhancing skin texture.",
     },
     "Cheek Constellation": {
         "prompt": "cluster of freckles across cheeks",
