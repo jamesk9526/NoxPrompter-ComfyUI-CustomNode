@@ -2,19 +2,54 @@
 
 from __future__ import annotations
 
-from noxprompter import common as _common
-from noxprompter import constants as _constants
-from noxprompter import nodes as _nodes
+import importlib
+import sys
+from pathlib import Path
+
+
+def _load_module(module: str):
+    """Import module preferring relative package path, then absolute."""
+
+    package_prefix = f"{__package__}." if __package__ else ""
+    candidates = [f"{package_prefix}{module}"] if package_prefix else []
+    candidates.append(module)
+
+    last_error: ModuleNotFoundError | None = None
+
+    for candidate in candidates:
+        try:
+            return importlib.import_module(candidate)
+        except ModuleNotFoundError as exc:
+            last_error = exc
+
+    # If both relative and absolute lookups failed, inject the plugin root into sys.path.
+    plugin_root = Path(__file__).resolve().parent
+    if str(plugin_root) not in sys.path:
+        sys.path.insert(0, str(plugin_root))
+        try:
+            return importlib.import_module(module)
+        except ModuleNotFoundError:  # pragma: no cover - will re-raise original error
+            pass
+
+    if last_error is None:  # pragma: no cover - defensive guard
+        raise ModuleNotFoundError(module)
+
+    raise last_error
+
+
+_common = _load_module("noxprompter.common")
+_constants = _load_module("noxprompter.constants")
+_nodes = _load_module("noxprompter.nodes")
 
 
 PresetManager = _common.PresetManager
 PresetMixin = _common.PresetMixin
 PromptFragmentFilter = _common.PromptFragmentFilter
-_format_notes = _common._format_notes  # noqa: SLF001
-_resolve_action_option = _common._resolve_action_option  # noqa: SLF001
-_resolve_option = _common._resolve_option  # noqa: SLF001
-_resolve_with_custom = _common._resolve_with_custom  # noqa: SLF001
-_split_tokens = _common._split_tokens  # noqa: SLF001
+_format_notes = getattr(_common, "_format_notes")
+_resolve_action_option = getattr(_common, "_resolve_action_option")
+_resolve_option = getattr(_common, "_resolve_option")
+_resolve_with_custom = getattr(_common, "_resolve_with_custom")
+_split_tokens = getattr(_common, "_split_tokens")
 
 
 NoxPromptUsageGuide = _nodes.NoxPromptUsageGuide
