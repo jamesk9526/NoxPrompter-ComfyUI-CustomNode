@@ -16,7 +16,7 @@ class NoxPromptPromptBoard:
             "Story Pillars",
             "Character Focus",
             "Visual Language",
-            "Lighting & Camera",
+            "Lighting Design",
             "Palette & Texture",
             "Keywords",
             "Risks & Watchouts",
@@ -24,7 +24,7 @@ class NoxPromptPromptBoard:
         ],
         "Visual-first": [
             "Visual Language",
-            "Lighting & Camera",
+            "Lighting Design",
             "Palette & Texture",
             "Story Pillars",
             "Character Focus",
@@ -37,7 +37,7 @@ class NoxPromptPromptBoard:
             "Story Pillars",
             "Character Focus",
             "Visual Language",
-            "Lighting & Camera",
+            "Lighting Design",
             "Palette & Texture",
             "Risks & Watchouts",
             "Keywords",
@@ -54,7 +54,10 @@ class NoxPromptPromptBoard:
                 "story_pillars": ("STRING", {"multiline": True, "default": ""}),
                 "character_focus": ("STRING", {"multiline": True, "default": ""}),
                 "visual_language": ("STRING", {"multiline": True, "default": ""}),
+                "lighting_design": ("STRING", {"multiline": True, "default": ""}),
                 "lighting_camera": ("STRING", {"multiline": True, "default": ""}),
+                "camera_language": ("STRING", {"multiline": True, "default": ""}),
+                "camera_summary": ("STRING", {"multiline": True, "default": ""}),
                 "palette_texture": ("STRING", {"multiline": True, "default": ""}),
                 "keywords": ("STRING", {"multiline": True, "default": ""}),
                 "risks_watchouts": ("STRING", {"multiline": True, "default": ""}),
@@ -70,7 +73,10 @@ class NoxPromptPromptBoard:
         story_pillars: str = "",
         character_focus: str = "",
         visual_language: str = "",
+        lighting_design: str = "",
         lighting_camera: str = "",
+        camera_language: str = "",
+        camera_summary: str = "",
         palette_texture: str = "",
         keywords: str = "",
         risks_watchouts: str = "",
@@ -78,11 +84,17 @@ class NoxPromptPromptBoard:
         structure_mode: str = "Story-first",
         include_missing_list: bool = True,
     ):
+        lighting_block = "\n".join(
+            part.strip()
+            for part in (lighting_design, lighting_camera, camera_language, camera_summary)
+            if part and part.strip()
+        ).strip()
+
         section_values: Dict[str, str] = {
             "Story Pillars": story_pillars,
             "Character Focus": character_focus,
             "Visual Language": visual_language,
-            "Lighting & Camera": lighting_camera,
+            "Lighting Design": lighting_block,
             "Palette & Texture": palette_texture,
             "Keywords": keywords,
             "Risks & Watchouts": risks_watchouts,

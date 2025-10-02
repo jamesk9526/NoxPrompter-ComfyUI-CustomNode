@@ -53,6 +53,7 @@ _split_tokens = getattr(_common, "_split_tokens")
 
 
 NoxPromptUsageGuide = _nodes.NoxPromptUsageGuide
+NoxPromptWorkflowNavigator = _nodes.NoxPromptWorkflowNavigator
 NoxPromptKontextHelper = _nodes.NoxPromptKontextHelper
 NoxPromptOrganizer = _nodes.NoxPromptOrganizer
 NoxPromptPromptBoard = _nodes.NoxPromptPromptBoard
@@ -66,10 +67,14 @@ NoxPromptCharacterCreator = _nodes.NoxPromptCharacterCreator
 NoxPromptHumanDesigner = _nodes.NoxPromptHumanDesigner
 NoxPromptWardrobeDesigner = _nodes.NoxPromptWardrobeDesigner
 NoxPromptActionDirector = _nodes.NoxPromptActionDirector
+NoxPromptPoseMaster = _nodes.NoxPromptPoseMaster
 NoxPromptNSFWActionDirector = _nodes.NoxPromptNSFWActionDirector
 NoxPromptNSFWAIO = _nodes.NoxPromptNSFWAIO
 NoxPromptLightingMaster = _nodes.NoxPromptLightingMaster
+NoxPromptCameraMaster = _nodes.NoxPromptCameraMaster
+NoxPromptCameraLanguage = _nodes.NoxPromptCameraLanguage
 NoxPromptNSFWDesigner = _nodes.NoxPromptNSFWDesigner
+NoxPromptNSFWPoseMaster = _nodes.NoxPromptNSFWPoseMaster
 NoxPromptCamz = _nodes.NoxPromptCamz
 NoxPromptCombiner = _nodes.NoxPromptCombiner
 NoxPromptPipelineCombiner = _nodes.NoxPromptPipelineCombiner
@@ -94,6 +99,7 @@ _BASE_EXPORTS = [
     "_resolve_with_custom",
     "_split_tokens",
     "NoxPromptUsageGuide",
+    "NoxPromptWorkflowNavigator",
     "NoxPromptKontextHelper",
     "NoxPromptOrganizer",
     "NoxPromptPromptBoard",
@@ -107,10 +113,14 @@ _BASE_EXPORTS = [
     "NoxPromptHumanDesigner",
     "NoxPromptWardrobeDesigner",
     "NoxPromptActionDirector",
+    "NoxPromptPoseMaster",
     "NoxPromptNSFWActionDirector",
     "NoxPromptNSFWAIO",
     "NoxPromptLightingMaster",
+    "NoxPromptCameraMaster",
+    "NoxPromptCameraLanguage",
     "NoxPromptNSFWDesigner",
+    "NoxPromptNSFWPoseMaster",
     "NoxPromptCamz",
     "NoxPromptCombiner",
     "NoxPromptPipelineCombiner",

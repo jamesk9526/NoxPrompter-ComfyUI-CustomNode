@@ -389,6 +389,209 @@ ACTION_SECONDARY_OPTIONS = {
 }
 
 
+POSE_BASELINE_NEGATIVES = [
+    "blurry",
+    "low detail",
+    "awkward pose",
+    "broken anatomy",
+    "overexposed",
+    "underexposed",
+]
+
+
+POSE_MASTER_PROFILES = {
+    "None": {"prompt": "", "notes": "No specific pose emphasis."},
+    "Heroic Stand": {
+        "prompt": "heroic stand, squared shoulders, lifted chin",
+        "notes": "Anchor feet shoulder-width apart and keep spine tall for confidence.",
+    },
+    "Dynamic Leap": {
+        "prompt": "dynamic leap, extended limbs, airborne energy",
+        "notes": "Freeze mid-air with clean lines and focus on forward momentum.",
+    },
+    "Serene Repose": {
+        "prompt": "serene repose, relaxed posture, gentle weight shift",
+        "notes": "Let the body settle naturally and emphasize calm breath.",
+    },
+    "Action Ready": {
+        "prompt": "action-ready stance, bent knees, balanced weight",
+        "notes": "Keep center of gravity low with arms prepared for motion.",
+    },
+    "Spotlight Performance": {
+        "prompt": "spotlight performance pose, expressive hands, theatrical lines",
+        "notes": "Lean into stagecraft with intentional gesture and clear silhouette.",
+    },
+    "Athletic Stretch": {
+        "prompt": "athletic stretch, elongated spine, reaching fingertips",
+        "notes": "Celebrate flexibility while keeping joints aligned and supported.",
+    },
+    "Team Huddle": {
+        "prompt": "team huddle formation, supportive contact, unified focus",
+        "notes": "Stack bodies with layered depth while maintaining clear sightlines.",
+    },
+    "Creative Flow": {
+        "prompt": "creative flow pose, sweeping motion, artistic flair",
+        "notes": "Treat limbs like brush strokes—use fluid arcs for elegance.",
+    },
+    "Cinematic Tableau": {
+        "prompt": "cinematic tableau, balanced grouping, story-driven arrangement",
+        "notes": "Compose subjects to guide the viewer through layered narrative moments.",
+    },
+    "Custom": {
+        "prompt": "",
+        "notes": "Use the custom pose prompt input to describe a bespoke stance.",
+    },
+}
+
+
+POSE_CAMERA_FRAMING = {
+    "None": {"prompt": "", "notes": "No specific camera framing emphasis."},
+    "Intimate Portrait": {
+        "prompt": "intimate portrait framing, chest-up focus, shallow depth",
+        "notes": "Tighten framing for emotional connection and subtle detail.",
+    },
+    "Full Figure": {
+        "prompt": "full-figure framing, grounded perspective, clear silhouette",
+        "notes": "Keep head-to-toe visibility with even spacing around the subject.",
+    },
+    "Hero Angle": {
+        "prompt": "hero angle framing, low vantage, empowered scale",
+        "notes": "Use a low tilt to amplify stature and presence.",
+    },
+    "Overhead Plan": {
+        "prompt": "overhead plan view, choreographed layout, geometric clarity",
+        "notes": "Shoot from above to emphasize symmetry and blocking marks.",
+    },
+    "Dynamic Tracking": {
+        "prompt": "dynamic tracking frame, subtle motion blur, parallax depth",
+        "notes": "Plan camera movement to follow motion arcs without losing focus.",
+    },
+    "Wide Establish": {
+        "prompt": "wide establish framing, environmental context, layered depth",
+        "notes": "Give the audience a sense of place while keeping pose readable.",
+    },
+    "Group Balance": {
+        "prompt": "group balance framing, staggered heights, cohesive spacing",
+        "notes": "Stagger heights and angles so every performer stays visible.",
+    },
+    "Custom": {
+        "prompt": "",
+        "notes": "Use the custom camera prompt input to describe bespoke framing.",
+    },
+}
+
+
+POSE_LIGHTING_SETUPS = {
+    "None": {"prompt": "", "notes": "No lighting emphasis beyond base scene."},
+    "Soft Studio": {
+        "prompt": "soft studio wrap, diffused key, feathered fill",
+        "notes": "Ideal for portrait-friendly posing with flattering gradients.",
+    },
+    "Dramatic Spotlight": {
+        "prompt": "dramatic spotlight beam, pronounced falloff, stage intensity",
+        "notes": "Use crisp edges to carve strong silhouettes across the set.",
+    },
+    "Golden Hour": {
+        "prompt": "golden hour warmth, rim glow, gentle highlights",
+        "notes": "Chase natural sun for glowing edges and soft color contrast.",
+    },
+    "Graphite Noir": {
+        "prompt": "graphite noir lighting, high contrast, sculpted shadows",
+        "notes": "Dial up contrast for graphic, monochrome-friendly posing.",
+    },
+    "Color Wash": {
+        "prompt": "color wash gels, dual-tone ambiance, stylized gradient",
+        "notes": "Blend complementary gels to support thematic palettes.",
+    },
+    "Practical Glow": {
+        "prompt": "practical glow pools, motivated sources, ambient warmth",
+        "notes": "Let lamps and fixtures motivate direction and luminosity.",
+    },
+    "High Key Stage": {
+        "prompt": "high key stage wash, even coverage, minimal shadows",
+        "notes": "Flatten contrast for choreography, fashion, or product beats.",
+    },
+    "Custom": {
+        "prompt": "",
+        "notes": "Use the custom lighting prompt input to detail bespoke setups.",
+    },
+}
+
+
+POSE_SET_DESIGNS = {
+    "None": {"prompt": "", "notes": "No additional set design guidance."},
+    "Studio Seamless": {
+        "prompt": "studio seamless sweep, clean backdrop, controlled environment",
+        "notes": "Perfect for product, fashion, and choreography clarity.",
+    },
+    "Urban Rooftop": {
+        "prompt": "urban rooftop vista, city skyline, railings and lights",
+        "notes": "Mind safety rails and wind—secure loose fabric or props.",
+    },
+    "Nature Overlook": {
+        "prompt": "nature overlook, elevated ridge, expansive landscape",
+        "notes": "Embrace environmental storytelling; confirm stable footing.",
+    },
+    "Stage Proscenium": {
+        "prompt": "stage proscenium, theatrical drape, curated props",
+        "notes": "Block choreography with wing space for entrances/exits.",
+    },
+    "Industrial Loft": {
+        "prompt": "industrial loft, brick walls, ambient practicals",
+        "notes": "Leverage textured surfaces and window light for depth.",
+    },
+    "Sports Arena": {
+        "prompt": "sports arena floor, court markings, spectator seating",
+        "notes": "Mark hero position and allow room for motion bursts.",
+    },
+    "Creative Studio": {
+        "prompt": "creative studio, art supplies, easels and canvases",
+        "notes": "Arrange tools to frame hands and gestures with context.",
+    },
+    "Custom": {
+        "prompt": "",
+        "notes": "Use the custom set prompt input to describe bespoke environments.",
+    },
+}
+
+
+POSE_ENERGY_LEVELS = {
+    "None": {"prompt": "", "notes": "No additional energy directive."},
+    "Calm Poise": {
+        "prompt": "calm poised energy, steady breath, relaxed momentum",
+        "notes": "Ideal for wellness, portrait, or reflective storytelling beats.",
+    },
+    "Focused Drive": {
+        "prompt": "focused drive, purposeful intensity, ready posture",
+        "notes": "Communicate determination through body tension and gaze.",
+    },
+    "Joyful Burst": {
+        "prompt": "joyful burst of energy, open gestures, bright expression",
+        "notes": "Encourage vibrant motion with expressive hands and eyes.",
+    },
+    "High Octane": {
+        "prompt": "high-octane energy, kinetic limbs, amplified motion",
+        "notes": "Align lighting and shutter speed to freeze bold motion arcs.",
+    },
+    "Graceful Flow": {
+        "prompt": "graceful flow, continuous movement, lyrical pacing",
+        "notes": "Blend dance-like motion with elongated, fluid lines.",
+    },
+    "Thoughtful Focus": {
+        "prompt": "thoughtful focus, introspective tone, grounded stance",
+        "notes": "Pair with storytelling props or gaze cues for narrative depth.",
+    },
+    "Celebratory Rally": {
+        "prompt": "celebratory rally, raised arms, collective enthusiasm",
+        "notes": "Works well for ensemble cheer moments and community highlights.",
+    },
+    "Custom": {
+        "prompt": "",
+        "notes": "Use the custom energy prompt input to define bespoke energy.",
+    },
+}
+
+
 ACTION_TEMPO_OPTIONS = {
     "None": {"prompt": "", "summary": "Neutral tempo."},
     "Slow Burn": {"prompt": "slow burn cadence, deliberate pacing, controlled breath", "summary": "Measured tempo suited for stealth or tension building."},
@@ -1875,7 +2078,7 @@ CHARACTER_ROLE_OPTIONS = {
 WARDROBE_BASE_GARMENT_OPTIONS = {
     "Battle Dress": {"prompt": "battle dress core, reinforced bodice, articulated plating", "notes": "Armor-meets-fashion silhouette balancing protection and movement."},
     "yoga Pants & Tank": {"prompt": "stretch-fit yoga pants paired with breathable tank top", "notes": "Flexible activewear for dynamic poses and fluid motion."},
-    "Evening Suit": {"prompt": "sleek evening suit, tailored fit", " notes": "Sophisticated formalwear with sharp lines and classic elegance."},
+    "Evening Suit": {"prompt": "sleek evening suit, tailored fit", "notes": "Sophisticated formalwear with sharp lines and classic elegance."},
     "jogging Suit": {"prompt": "lightweight jogging suit, moisture-wicking fabric", "notes": "Sporty ensemble designed for high-energy activity."},
     "Casual Dress": {"prompt": "flowy casual dress, soft fabric", "notes": "Relaxed yet stylish dress perfect for everyday wear."},
     "Formal Gown": {"prompt": "elegant formal gown, intricate detailing", "notes": "Luxurious gown designed for high-society events."},
@@ -1895,9 +2098,17 @@ WARDROBE_BASE_GARMENT_OPTIONS = {
     "Summer Sundress": {"prompt": "lightweight summer sundress, breezy hem", "notes": "Sun-ready silhouette perfect for daytime leisure moments."},
     "Business Suit": {"prompt": "structured business suit, sharp lapels", "notes": "Professional ensemble projecting confidence and polish."},
     "Casual Shorts Set": {"prompt": "relaxed tee with cuffed shorts", "notes": "Warm-weather casual look for carefree outings."},
+    "Casual Blouse & Jeans": {"prompt": "soft draped blouse paired with classic denim jeans", "notes": "Everyday outfit balancing polish and comfort."},
     "Athletic Leggings Set": {"prompt": "moisture-wicking athletic tank with compression leggings", "notes": "Performance activewear tuned for training and dynamic motion."},
     "Classic Sweater & Skirt": {"prompt": "chunky knit sweater tucked into pleated skirt", "notes": "Cozy layered look balancing texture and movement."},
     "Bikini Set": {"prompt": "two-piece bikini with supportive top and high-cut bottoms", "notes": "Swim-ready ensemble for poolside or beach visuals."},
+    "Athletic Bikini Set": {"prompt": "sport-cut bikini top with secure racerback and streamlined swim bottoms", "notes": "Performance swimwear built for active laps and surf scenes."},
+    "Sports Bra & Bike Shorts": {"prompt": "supportive sports bra matched with high-rise bike shorts", "notes": "Athletic combo ideal for training montages and studio workouts."},
+    "Track Jacket & Leggings": {"prompt": "lightweight track jacket layered over stretch leggings", "notes": "Athleisure staple ready for warmups or casual errand runs."},
+    "Tennis Dress": {"prompt": "pleated tennis dress, built-in shorts", "notes": "Court-ready dress mixing sporty performance with feminine flair."},
+    "Wrap Dress": {"prompt": "jersey wrap dress cinched at the waist", "notes": "Flattering drape that highlights curves while remaining comfortable."},
+    "Pencil Skirt & Blouse": {"prompt": "tailored pencil skirt paired with a silk blouse", "notes": "Professional womenswear ensemble projecting boardroom confidence."},
+    "Maxi Dress": {"prompt": "flowing maxi dress with tiered hem", "notes": "Bohemian-inspired length ideal for relaxed summer storytelling."},
     "Swim Trunks": {"prompt": "quick-dry swim trunks with elastic waistband", "notes": "Casual swimwear for aquatic adventures."},
     "Aviator Uniform": {"prompt": "retro aviator uniform, bomber jacket, harnessed straps", "notes": "Flight-ready uniform with nostalgic military cues."},
     "Monastic Robes": {"prompt": "monastic robes, incense-scented fabric, hand-stitched trim", "notes": "Spiritual vestments woven with ceremonial symbolism."},
@@ -1934,6 +2145,10 @@ WARDROBE_LAYER_OPTIONS = {
     "Armor Plating": {"prompt": "layered armor plating, reactive segments", "notes": "Deployable plating that stiffens on impact."},
     "Sheer Overlay": {"prompt": "sheer organza overlay, cascading transparency", "notes": "Gossamer layer that refracts stage lighting."},
     "Draped Cape": {"prompt": "floor-length draped cape, weighted hem", "notes": "Dramatic cloak engineered to billow with motion."},
+    "Denim Jacket": {"prompt": "classic denim jacket, contrast stitching", "notes": "Casual topper that grounds futuristic looks in real-world texture."},
+    "Cozy Cardigan": {"prompt": "chunky knit cardigan, open front", "notes": "Layered knitwear adding warmth and relaxed softness."},
+    "Tailored Blazer": {"prompt": "tailored blazer, structured shoulders", "notes": "Polished layer instantly sharpening everyday outfits."},
+    "Puffer Vest": {"prompt": "lightweight puffer vest, quilted panels", "notes": "Sport-inspired outer layer providing warmth without bulk."},
     "Harness Rig": {"prompt": "utility harness rig, quick-release clasps", "notes": "Functional harness ready for gear clips and tether lines."},
     "Layered Sash": {"prompt": "layered sash bundle, symbolic knots", "notes": "Sashes encoded with cultural symbology and achievements."},
     "Feather Mantle": {"prompt": "feather mantle, iridescent plumage", "notes": "Plumage mantle rippling with chromatic sheen."},
@@ -1941,9 +2156,6 @@ WARDROBE_LAYER_OPTIONS = {
     "Holster Web": {"prompt": "holster webbing, magnetized docks", "notes": "Holster network distributing signature tools."},
     "Scale Veil": {"prompt": "scale veil drape, metallic tessellation", "notes": "Articulated scales shimmering like liquid metal."},
     "Thermal Cloak": {"prompt": "thermal cloak, heating filaments", "notes": "Climate-responsive cloak shielding from extremes."},
-    "Denim Jacket": {"prompt": "faded denim jacket, lived-in creases", "notes": "Casual layer adding texture to modern outfits."},
-    "Cardigan": {"prompt": "soft knit cardigan, open front drape", "notes": "Comfortable knit layer ideal for cozy scenes."},
-    "Tailored Blazer": {"prompt": "tailored blazer, structured shoulders", "notes": "Polished layer dialing up professional energy."},
     "Raincoat": {"prompt": "lightweight raincoat, snap closures", "notes": "Weather-ready shell keeping things practical."},
     "Fur Stole": {"prompt": "luxury fur stole, draped shoulders", "notes": "Plush accent layer radiating classic glamour."},
     "Holo Poncho": {"prompt": "holo poncho, refractive fringe", "notes": "Digital poncho projecting responsive patterns."},
@@ -2746,21 +2958,25 @@ WARDROBE_SILHOUETTE_OPTIONS = {
     "Duster": {"prompt": "duster length, elongated lines", "notes": "Sweeping length amplifying movements."},
     "Armored Bulk": {"prompt": "armored bulk profile, imposing mass", "notes": "Intimidating bulk emphasizing defensive power."},
     "Corseted": {"prompt": "corseted waist, cinched shaping", "notes": "Structured waist crafting hourglass emphasis."},
+    "Bodycon": {"prompt": "bodycon silhouette, sculpted stretch fit", "notes": "Curve-tracing profile ideal for contemporary party looks."},
     "Layercake": {"prompt": "multi-tiered layers, cascading volume", "notes": "Stacked layers creating kinetic volume."},
     "Sleeveless Column": {"prompt": "sleeveless column profile, streamlined line", "notes": "Minimalist column silhouette for sleek modernity."},
     "Crop & Drop": {"prompt": "cropped top with drop panels, dynamic reveals", "notes": "Cropped upper matched with dramatic lower panels."},
     "Flight Ready": {"prompt": "flight-ready tapered silhouette, aerodynamic", "notes": "Aerodynamic tailoring reducing drag mid-air."},
     "Battle Cloak": {"prompt": "battle cloak silhouette, sweeping guards", "notes": "Layered cloak lines designed to intimidate."},
     "Straight Leg": {"prompt": "straight leg silhouette, relaxed drape", "notes": "Classic straight fit for jeans or trousers."},
+    "Fit-and-Flare": {"prompt": "fit-and-flare silhouette, tailored bodice with sweeping hem", "notes": "Timeless feminine contour balancing structure and movement."},
     "Boxy Crop": {"prompt": "boxy cropped silhouette, squared volume", "notes": "Modern cropped profile balancing relaxed structure."},
     "Relaxed Fit": {"prompt": "relaxed fit silhouette, easy ease", "notes": "Laid-back fit emphasizing comfort and movement."},
     "Empire": {"prompt": "empire waist silhouette, elevated waistline", "notes": "High waist seam creating flowing lines below the bust."},
     "Peplum": {"prompt": "peplum flare silhouette, flounced waist", "notes": "Waist flare adding playful structured volume."},
+    "Wrap": {"prompt": "wrap silhouette, overlapping panels cinched at waist", "notes": "Adjustable wrap creating flattering diagonal lines."},
     "Cocoon": {"prompt": "cocoon silhouette, rounded envelope", "notes": "Protective oval contour wrapping the body."},
     "High-Low": {"prompt": "high-low hem silhouette, cascading back", "notes": "Asymmetric hem creating dramatic trailing movement."},
     "Column Armor": {"prompt": "column armor silhouette, vertical plates", "notes": "Rigid vertical lines reinforcing imposing presence."},
     "Skater": {"prompt": "skater silhouette, fitted bodice, flared skirt", "notes": "Energetic flare ideal for motion-heavy scenes."},
     "Oversized": {"prompt": "oversized silhouette, exaggerated volume", "notes": "Deliberate volume cultivating avant-garde shapes."},
+    "Athletic Streamline": {"prompt": "athletic streamlined silhouette, tapered seams", "notes": "Sport-inspired contour designed for freedom of movement."},
     "Tech Shell": {"prompt": "tech shell silhouette, modular panels", "notes": "Futuristic segmented layering with sleek contour."},
     "Draped Column": {"prompt": "draped column silhouette, fluid vertical folds", "notes": "Elegant draped lines hugging the figure softly."},
 }

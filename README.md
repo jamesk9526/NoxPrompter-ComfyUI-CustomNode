@@ -8,8 +8,8 @@ Modular prompt-engineering tools for ComfyUI that turn cinematic ideas into prod
 
 ## Highlights
 
-- **18 purpose-built nodes** spanning builders, character design, wardrobe, lighting, NSFW safeguards, streaming prompts, and pipeline organization.
-- **Formula-driven Wan 2.2 builder** with curated lighting, motion, composition, and stylization vocabularies plus inline overrides and randomization.
+- **20 purpose-built nodes** spanning builders, character design, wardrobe, lighting, camera direction, NSFW safeguards, streaming prompts, and pipeline organization.
+- **Formula-driven Wan 2.2 builder** with curated motion, composition, and stylization vocabularies plus inline overrides and randomization; pair with Lighting Master for centralized lighting control.
 - **Preset-friendly companions** – every major node supports save/load/list actions so you can build libraries of looks, poses, palettes, and camera moves.
 - **Consistency tooling** – Narrative Weaver, Palette Mixer, Organizer, and Pipeline Combiner keep every fragment aligned, with automatic contradiction warnings.
 - **Safety-first NSFW workflow** – mature prompts include baseline negatives, safety notes, and an NSFW AIO fusion node to merge designer + action outputs responsibly.
@@ -22,7 +22,7 @@ Modular prompt-engineering tools for ComfyUI that turn cinematic ideas into prod
 - `NoxPromptOrganizer` *(NoxPrompter/Utility)* – Collates fragments from multiple nodes into a readable, ordered prompt, highlights missing sections, and produces a checklist.
 
 ### Core Builder Stack
-- `NoxPromptBuilder` *(NoxPrompter/Builders)* – Wan 2.2 style prompt assembler with basic/advanced formulas, keyword styling, randomization, and preset storage.
+- `NoxPromptBuilder` *(NoxPrompter/Builders)* – Wan 2.2 style prompt assembler with basic/advanced formulas, keyword styling, randomization, preset storage, and pass-through inputs for Lighting Master and Camera Master outputs.
 - `NoxPromptPaletteMixer` *(NoxPrompter/Companions)* – Produces palette override strings, custom keyword bundles, and usage notes from cinematic mood profiles.
 - `NoxPromptNarrativeWeaver` *(NoxPrompter/Companions)* – Outputs subject, scene, motion, hook, and descriptor text blocks from archetype + tone selectors.
 - `NoxPromptCombiner` *(NoxPrompter/Text)* – Blends up to three prompts via concatenate, alternate, blend, or weighted strategies.
@@ -36,11 +36,16 @@ Modular prompt-engineering tools for ComfyUI that turn cinematic ideas into prod
 
 ### Cinematic Direction
 - `NoxPromptActionDirector` *(NoxPrompter/Direction)* – Crafts kinetic action prompts, summaries, and director notes with camera, tempo, props, and risk guidance.
-- `NoxPromptLightingMaster` *(NoxPrompter/Direction)* – Outputs lighting setups, mood notes, and technical rigging reminders for complex scenes.
+- `NoxPromptCameraMaster` *(NoxPrompter/Direction)* – Aggregates shot size, lensing, motion, rigging, palette, and safety notes into a single camera prompt stream for Builder and Organizer nodes (**alias:** `NoxPromptCameraLanguage` for legacy graphs).
+- `NoxPromptLightingMaster` *(NoxPrompter/Direction)* – Consolidates all lighting source, quality, and time-of-day palettes into one node and outputs lighting setups, mood notes, and technical rigging reminders for complex scenes.
 - `NoxPromptCamz` *(NoxPrompter/Direction)* – Streaming-focused prompt generator with persona, stage, overlay, and safety mentions for creator economy workflows.
+
+### Posing & Staging
+- `NoxPromptPoseMaster` *(NoxPrompter/Posing)* – Directs all-ages pose direction with camera, lighting, set, and energy guidance plus baseline negatives and coaching reminders.
 
 ### NSFW Toolkit (Adults Only)
 - `NoxPromptNSFWDesigner` *(NoxPrompter/NSFW)* – Safely assembles sensual prompts with wardrobe, pose, lighting, and explicitness controls plus baseline negatives.
+- `NoxPromptNSFWPoseMaster` *(NoxPrompter/NSFW)* – Directs adult-only posing with camera, lighting, and heat controls while surfacing safety briefs and negative guidance.
 - `NoxPromptNSFWActionDirector` *(NoxPrompter/NSFW)* – Produces choreography-focused NSFW action prompts, summaries, and consent-oriented safety notes.
 - `NoxPromptNSFWAIO` *(NoxPrompter/NSFW)* – Fuses designer + action outputs into a single prompt/negative/safety stack while deduplicating keywords and warnings.
 
@@ -81,12 +86,14 @@ After the restart, right-click the canvas and confirm a **NoxPrompter** category
 - Wardrobe Designer exports the hero look, a bullet list of styling notes, and an accessories-only string. Route the prompt into the Builder or Combiner and hand the accessory list to your prop artist.
 
 ### Directional Nodes
+- `NoxPromptPoseMaster` handles all-ages pose staging. It combines pose profiles, camera framing, lighting, set design, and energy cues, then outputs prompt/negative/brief/guidance strings with coaching and comfort reminders.
 - `NoxPromptActionDirector` and `NoxPromptNSFWActionDirector` share a schema: defaults cover preset combos, while every control offers a “Custom Input” field when you need bespoke language.
 - Lighting Master produces three parallel outputs (prompt, mood notes, technical notes). Feed the prompt to the Builder or Pipeline Combiner, and keep the technical notes for your lighting checklist.
 - `NoxPromptCamz` focuses on creator economy scenarios (persona, stage theme, overlays). Disable `include_negative_baseline` if downstream automation already injects safety negatives.
 
 ### NSFW Flow (Adults Only)
 - Keep `include_negative_baseline` and `include_safety_note` enabled unless you have verified policy tooling downstream. They block underage terms, coercion, non-consensual language, and extreme anatomy references by default.
+- `NoxPromptNSFWPoseMaster` focuses on staging: it merges pose profiles with camera framing, lighting, heat, and explicitness controls, then outputs a dedicated prompt/negative/brief trio plus safety notes. Use it to lock pose direction before layering wardrobe or action cues.
 - `NoxPromptNSFWActionDirector` adds choreography and consent beats. Hand its `action_prompt` to the Builder or Combiner, and archive the `safety_notes` for compliance logs.
 - `NoxPromptNSFWAIO` merges designer + director outputs, deduplicates negatives, and ensures safety notes stay intact. It also accepts extra positives/negatives if you have studio-specific rules.
 

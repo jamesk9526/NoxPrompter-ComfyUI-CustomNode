@@ -2,9 +2,25 @@ from __future__ import annotations
 
 import random
 import re
-from typing import Any, Dict, List, Tuple
-from ..common import PresetMixin, PromptFragmentFilter, _resolve_option
-from ..constants import *  # noqa: F403
+from ..common import PresetMixin, PromptFragmentFilter
+from ..constants import (
+    CAMERA_ADVANCED_OPTIONS,
+    CAMERA_BASIC_OPTIONS,
+    COLOR_TONE_OPTIONS,
+    COMPOSITION_OPTIONS,
+    EMOTION_OPTIONS,
+    FORMULA_CONFIGS,
+    LENS_ANGLE_OPTIONS,
+    LENS_FOCAL_OPTIONS,
+    LENS_TYPE_OPTIONS,
+    LIGHT_QUALITY_OPTIONS,
+    LIGHT_SOURCE_OPTIONS,
+    MOTION_TYPE_OPTIONS,
+    SHOT_SIZE_OPTIONS,
+    SPECIAL_EFFECT_OPTIONS,
+    TIME_OF_DAY_OPTIONS,
+    VISUAL_STYLE_OPTIONS,
+)
 
 class NoxPromptBuilder(PresetMixin):
     """Construct prompts using formulas and curated keyword palettes."""
@@ -29,11 +45,11 @@ class NoxPromptBuilder(PresetMixin):
                 "lens_focal": (list(LENS_FOCAL_OPTIONS.keys()), {"default": "Medium"}),
                 "lens_angle": (list(LENS_ANGLE_OPTIONS.keys()), {"default": "None"}),
                 "lens_type": (list(LENS_TYPE_OPTIONS.keys()), {"default": "Single Shot"}),
+                "camera_basic": (list(CAMERA_BASIC_OPTIONS.keys()), {"default": "None"}),
+                "camera_advanced": (list(CAMERA_ADVANCED_OPTIONS.keys()), {"default": "None"}),
                 "color_tone": (list(COLOR_TONE_OPTIONS.keys()), {"default": "Warm Tone"}),
                 "motion_type": (list(MOTION_TYPE_OPTIONS.keys()), {"default": "Running"}),
                 "emotion": (list(EMOTION_OPTIONS.keys()), {"default": "Joy"}),
-                "camera_basic": (list(CAMERA_BASIC_OPTIONS.keys()), {"default": "Push-in"}),
-                "camera_advanced": (list(CAMERA_ADVANCED_OPTIONS.keys()), {"default": "Handheld"}),
                 "visual_style": (list(VISUAL_STYLE_OPTIONS.keys()), {"default": "Anime"}),
                 "special_effect": (list(SPECIAL_EFFECT_OPTIONS.keys()), {"default": "None"}),
                 "keyword_style": (["auto", "inline", "compact"], {"default": "auto"}),
@@ -42,10 +58,17 @@ class NoxPromptBuilder(PresetMixin):
                 "random_seed": ("INT", {"default": 0, "min": 0, "max": 1_000_000, "step": 1}),
                 "palette_overrides": ("STRING", {"multiline": True, "default": ""}),
                 "extra_descriptors": ("STRING", {"multiline": True, "default": "Model feature emphasis: complex & dynamic motion"}),
+                "lighting_prompt": ("STRING", {"multiline": True, "default": ""}),
+                "lighting_summary": ("STRING", {"multiline": True, "default": ""}),
+                "lighting_technical_notes": ("STRING", {"multiline": True, "default": ""}),
                 "custom_keywords": ("STRING", {"multiline": True, "default": ""}),
                 "negative_prompt": ("STRING", {"multiline": True, "default": ""}),
                 "prompt_prefix": ("STRING", {"default": ""}),
                 "prompt_suffix": ("STRING", {"default": ""}),
+                "camera_prompt": ("STRING", {"multiline": True, "default": ""}),
+                "camera_summary": ("STRING", {"multiline": True, "default": ""}),
+                "camera_notes": ("STRING", {"multiline": True, "default": ""}),
+                "camera_directives": ("STRING", {"multiline": True, "default": ""}),
                 "prompt_filter_enabled": ("BOOLEAN", {"default": True}),
                 "prompt_filter_profile": (list(sorted(PromptFragmentFilter.PROFILE_PRESETS.keys())), {"default": "balanced"}),
                 "preset_action": (["none", "save", "load", "list"], {"default": "none"}),
@@ -74,11 +97,11 @@ class NoxPromptBuilder(PresetMixin):
         lens_focal="Medium",
         lens_angle="None",
         lens_type="Single Shot",
+    camera_basic="None",
+    camera_advanced="None",
         color_tone="Warm Tone",
         motion_type="Running",
         emotion="Joy",
-        camera_basic="Push-in",
-        camera_advanced="Handheld",
         visual_style="Anime",
         special_effect="None",
         keyword_style="auto",
@@ -87,10 +110,17 @@ class NoxPromptBuilder(PresetMixin):
         random_seed=0,
         palette_overrides="",
         extra_descriptors="",
+        lighting_prompt="",
+        lighting_summary="",
+    lighting_technical_notes="",
         custom_keywords="",
         negative_prompt="",
         prompt_prefix="",
         prompt_suffix="",
+    camera_prompt="",
+    camera_summary="",
+    camera_notes="",
+        camera_directives="",
         prompt_filter_enabled=True,
         prompt_filter_profile="balanced",
         preset_action="none",
@@ -111,11 +141,11 @@ class NoxPromptBuilder(PresetMixin):
             "lens_focal": lens_focal,
             "lens_angle": lens_angle,
             "lens_type": lens_type,
+            "camera_basic": camera_basic,
+            "camera_advanced": camera_advanced,
             "color_tone": color_tone,
             "motion_type": motion_type,
             "emotion": emotion,
-            "camera_basic": camera_basic,
-            "camera_advanced": camera_advanced,
             "visual_style": visual_style,
             "special_effect": special_effect,
             "keyword_style": keyword_style,
@@ -124,10 +154,17 @@ class NoxPromptBuilder(PresetMixin):
             "random_seed": random_seed,
             "palette_overrides": palette_overrides,
             "extra_descriptors": extra_descriptors,
+            "lighting_prompt": lighting_prompt,
+            "lighting_summary": lighting_summary,
+            "lighting_technical_notes": lighting_technical_notes,
             "custom_keywords": custom_keywords,
             "negative_prompt": negative_prompt,
             "prompt_prefix": prompt_prefix,
             "prompt_suffix": prompt_suffix,
+            "camera_prompt": camera_prompt,
+            "camera_summary": camera_summary,
+            "camera_notes": camera_notes,
+            "camera_directives": camera_directives,
             "prompt_filter_enabled": prompt_filter_enabled,
             "prompt_filter_profile": prompt_filter_profile,
         }
@@ -153,11 +190,11 @@ class NoxPromptBuilder(PresetMixin):
         lens_focal = config.get("lens_focal", "Medium")
         lens_angle = config.get("lens_angle", "None")
         lens_type = config.get("lens_type", "Single Shot")
+        camera_basic = config.get("camera_basic", "None")
+        camera_advanced = config.get("camera_advanced", "None")
         color_tone = config.get("color_tone", "Warm Tone")
         motion_type = config.get("motion_type", "Running")
         emotion = config.get("emotion", "Joy")
-        camera_basic = config.get("camera_basic", "Push-in")
-        camera_advanced = config.get("camera_advanced", "Handheld")
         visual_style = config.get("visual_style", "Anime")
         special_effect = config.get("special_effect", "None")
         keyword_style = config.get("keyword_style", "auto")
@@ -166,10 +203,17 @@ class NoxPromptBuilder(PresetMixin):
         random_seed = int(config.get("random_seed", 0))
         palette_overrides = config.get("palette_overrides", "")
         extra_descriptors = config.get("extra_descriptors", "")
+        lighting_prompt = config.get("lighting_prompt", lighting_prompt)
+        lighting_summary = config.get("lighting_summary", lighting_summary)
+        lighting_technical_notes = config.get("lighting_technical_notes", lighting_technical_notes)
         custom_keywords = config.get("custom_keywords", "")
         negative_prompt = config.get("negative_prompt", "")
         prompt_prefix = config.get("prompt_prefix", "")
         prompt_suffix = config.get("prompt_suffix", "")
+        camera_prompt = config.get("camera_prompt", camera_prompt)
+        camera_summary = config.get("camera_summary", camera_summary)
+        camera_notes = config.get("camera_notes", camera_notes)
+        camera_directives = config.get("camera_directives", "")
         prompt_filter_enabled = bool(config.get("prompt_filter_enabled", True))
         prompt_filter_profile = config.get("prompt_filter_profile", "balanced")
 
@@ -201,6 +245,12 @@ class NoxPromptBuilder(PresetMixin):
 
         if extra_descriptors.strip():
             prompt_fragments.append(extra_descriptors.strip())
+
+        if lighting_prompt.strip():
+            prompt_fragments.append(lighting_prompt.strip())
+
+        if camera_prompt.strip():
+            prompt_fragments.append(camera_prompt.strip())
 
         aesthetic_prompts, aesthetic_summaries = self._collect_category_details(
             [
@@ -258,12 +308,17 @@ class NoxPromptBuilder(PresetMixin):
                 prompt_fragments.extend(aesthetic_prompts)
 
             if dynamic_prompts:
-                prompt_fragments.append(f"Motion & camera: {', '.join(dynamic_prompts)}")
+                prompt_fragments.append(f"Motion dynamics: {', '.join(dynamic_prompts)}")
+
 
             if "stylization" in structure and style_prompts:
                 prompt_fragments.append(f"Stylization: {', '.join(style_prompts)}")
             elif style_prompts:
                 prompt_fragments.extend(style_prompts)
+
+        camera_block = camera_directives.strip()
+        if camera_block:
+            prompt_fragments.append(f"Camera direction: {camera_block}")
 
         combined_custom = self._split_keywords(custom_keywords)
         if override_custom:
@@ -300,8 +355,44 @@ class NoxPromptBuilder(PresetMixin):
         prompt_text = self._assemble_prompt(prompt_fragments)
         neg_text = negative_prompt.strip()
 
-        aesthetic_notes = " | ".join(filter(None, aesthetic_summaries + style_summaries))
-        dynamic_notes = " | ".join(filter(None, dynamic_summaries + ([filter_summary] if filter_summary else [])))
+        lighting_summary = lighting_summary.strip()
+        aesthetic_sections = []
+        if lighting_summary:
+            aesthetic_sections.append(lighting_summary)
+        aesthetic_sections.extend(aesthetic_summaries)
+        aesthetic_sections.extend(style_summaries)
+        aesthetic_notes = " | ".join(filter(None, aesthetic_sections))
+
+        dynamic_notes_sources = list(dynamic_summaries)
+        if camera_summary.strip():
+            dynamic_notes_sources.append(camera_summary.strip())
+        if camera_notes.strip():
+            note_lines = []
+            for line in camera_notes.splitlines():
+                trimmed = line.strip()
+                if not trimmed:
+                    continue
+                if trimmed.startswith("- "):
+                    trimmed = trimmed[2:].strip()
+                elif trimmed.startswith("•"):
+                    trimmed = trimmed[1:].strip()
+                if trimmed:
+                    note_lines.append(trimmed)
+            if len(note_lines) > 1:
+                dynamic_notes_sources.extend(note_lines)
+            else:
+                dynamic_notes_sources.extend(note_lines)
+        if camera_block:
+            dynamic_notes_sources.append(f"Camera: {camera_block}")
+        if lighting_technical_notes.strip():
+            tech_lines = [line.strip() for line in lighting_technical_notes.splitlines() if line.strip()]
+            if len(tech_lines) > 1:
+                dynamic_notes_sources.extend(tech_lines)
+            else:
+                dynamic_notes_sources.append(lighting_technical_notes.strip())
+        if filter_summary:
+            dynamic_notes_sources.append(filter_summary)
+        dynamic_notes = " | ".join(filter(None, dynamic_notes_sources))
 
         return (prompt_text, neg_text, aesthetic_notes, dynamic_notes, preset_status)
 
@@ -399,16 +490,15 @@ class NoxPromptBuilder(PresetMixin):
             "camera angle": "lens_angle",
             "lens type": "lens_type",
             "shot type": "lens_type",
+            "camera basic": "camera_basic",
+            "basic camera": "camera_basic",
+            "camera advanced": "camera_advanced",
+            "advanced camera": "camera_advanced",
             "color tone": "color_tone",
             "color": "color_tone",
             "motion type": "motion_type",
             "motion": "motion_type",
             "emotion": "emotion",
-            "camera basic": "camera_basic",
-            "camera move": "camera_basic",
-            "basic move": "camera_basic",
-            "camera advanced": "camera_advanced",
-            "advanced move": "camera_advanced",
             "visual style": "visual_style",
             "style": "visual_style",
             "special effect": "special_effect",

@@ -1,8 +1,13 @@
 from __future__ import annotations
 
-from typing import Any, Dict, List, Tuple
 from ..common import PresetMixin, _resolve_action_option, _split_tokens
-from ..constants import *  # noqa: F403
+from ..constants import (
+    ACTION_INTERACTION_OPTIONS,
+    ACTION_PRIMARY_OPTIONS,
+    ACTION_SECONDARY_OPTIONS,
+    ACTION_TEMPO_OPTIONS,
+    CUSTOM_OPTION,
+)
 
 class NoxPromptActionDirector(PresetMixin):
     """Choreograph dynamic action beats, tempo, and supporting notes."""
@@ -53,7 +58,7 @@ class NoxPromptActionDirector(PresetMixin):
         props="",
         environment_beat="",
         intensity_descriptor="",
-        camera_language="",
+    camera_language="",
         sound_design="",
         dialogue_hook="",
         emotional_anchor="",
@@ -172,10 +177,10 @@ class NoxPromptActionDirector(PresetMixin):
         note_lines = []
         if beat_highlights:
             note_lines.append("Beat emphasis: " + ", ".join(beat_highlights))
-        if camera_language.strip():
-            note_lines.append("Camera: " + camera_language.strip())
         if sound_design.strip():
             note_lines.append("Sound design: " + sound_design.strip())
+        if camera_language.strip():
+            note_lines.append("Camera: " + camera_language.strip())
         if risk_list:
             note_lines.append("Safety: " + ", ".join(risk_list))
         if props_list:

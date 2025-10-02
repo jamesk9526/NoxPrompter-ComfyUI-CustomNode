@@ -15,13 +15,14 @@ Subject Node → Nox Prompt Builder → Text Display / CLIP Text Encode
      - `scene_setting`: "Sun-drenched meadow with tall grass"
      - `motion_arc`: "Sprints toward the camera clutching a weathered satchel"
 3. (Optional) Add a `narrative_hook`: "Camera orbits to reveal cheering villagers"
-4. Pick keyword palette options
-     - `light_source`: Daylight · `light_quality`: Soft Light · `time_of_day`: Sunset
+4. (Optional) Drop in a "Nox Prompt Lighting Master" node, configure the lighting blueprint you want, then connect `lighting_prompt → lighting_prompt`, `mood_notes → lighting_summary`, and `technical_notes → lighting_technical_notes` on the Builder.
+5. (Optional) Add a "Nox Prompt Camera Master" node (alias: Camera Language) and wire `camera_prompt → camera_prompt`, `framing_summary → camera_summary`, and `rigging_notes → camera_notes` on the Builder (and optionally into the Prompt Organizer `camera_notes`).
+6. Pick keyword palette options
      - `shot_size`: Medium Close-up · `composition`: Balanced · `lens_angle`: Low Angle
      - `motion_type`: Running · `emotion`: Joy · `camera_basic`: Push-in · `camera_advanced`: Following
      - `visual_style`: Anime · `special_effect`: Tilt-shift
-5. Add `custom_keywords`: "heroic energy, epic storytelling" and `extra_descriptors`: "Shot on 85mm, 16fps preview"
-6. (Optional) Supply a `negative_prompt` like "blurry, low detail"
+7. Add `custom_keywords`: "heroic energy, epic storytelling" and `extra_descriptors`: "Shot on 85mm, 16fps preview"
+8. (Optional) Supply a `negative_prompt` like "blurry, low detail"
 
 **Expected Result**:
 A multi-sentence prompt with cinematic palette, motion & camera clause, stylization clause, and appended custom keywords—ready for Wan 2.2.
@@ -45,7 +46,7 @@ Nox Prompt Palette Mixer -----+
      - `mood_profile`: "Moody Nightfall"
      - `intensity`: `0.7`
      - `include_effects`: `True`
-     - Optional `custom_palette`: `camera_basic: Pan Left\nlight_quality: Rim Light`
+     - Optional `custom_palette`: `camera_basic: Pan Left\nvisual_style: Noir Film`
 3. Feed the Weaver outputs (`subject_focus`, `scene_setting`, `motion_arc`, `narrative_hook`, `extra_descriptors`) into the corresponding Builder inputs
 4. Send the Palette Mixer `palette_overrides` to the Builder `palette_overrides` input and `custom_keywords` to the Builder `custom_keywords`
 5. Enable `randomize_missing` on the Builder with a chosen `random_seed` for reproducible variations
@@ -153,3 +154,30 @@ Concept Inputs → Nox Prompt NSFW Designer → Text Display / Builder / Enhance
 
 **Expected Result**:
 A curated NSFW prompt assembled with tasteful descriptors, auto-negative baselines filtering out underage or abusive content, plus contextual safety notes summarizing the chosen profiles.
+
+## NSFW Pose Master Workflow (Mature Projects Only)
+
+```
+Concept Inputs → Nox Prompt NSFW Pose Master → Text Display / Builder / Combiner
+```
+
+**Setup**:
+1. Ensure the scene remains within policy-compliant, adult-only boundaries with clear consent language baked in.
+2. Drop in a "Nox Prompt NSFW Pose Master" node.
+3. Configure the required fields:
+     - `subject_focus`: "Empowered adult performer leaning back on a velvet chaise"
+     - `pose_profile`: `Reclined Elegance`
+     - `camera_framing`: `Low Angle Admiration`
+4. Shape the staging with optional modifiers:
+     - `lighting_setup`: `Candlelit Warmth`
+     - `heat_profile`: `Sensual`
+     - `explicitness_level`: `Implied Nude`
+     - `pose_intent`: "Highlight graceful posture while keeping tone tasteful and confident"
+     - `support_props`: "velvet chaise, crystal coupe"
+     - `expression_focus`: "relaxed smile, steady eye contact"
+     - `movement_cue`: "slow inhale, gentle arch"
+5. Leave the default `include_negative_baseline` and `include_safety_note` toggles enabled so baseline negatives and safety guidance stay attached.
+6. Route the `pose_prompt` into Builder/Combiner pipelines, use `pose_negative` for safety filtering, and archive `pose_brief` + `safety_notes` in your production log.
+
+**Expected Result**:
+A pose-focused prompt with synchronized camera, lighting, and heat descriptors, an auto-curated negative stack, and a quick-reference brief that reinforces consent and safety reminders.

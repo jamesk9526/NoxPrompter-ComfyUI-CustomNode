@@ -1,8 +1,23 @@
 from __future__ import annotations
 
-from typing import Any, Dict, List, Tuple
 from ..common import PresetMixin, _resolve_with_custom
-from ..constants import *  # noqa: F403
+from ..constants import (
+    CUSTOM_OPTION,
+    LIGHT_SOURCE_OPTIONS,
+    LIGHT_QUALITY_OPTIONS,
+    LIGHTING_ATMOSPHERE_OPTIONS,
+    LIGHTING_BACKLIGHT_OPTIONS,
+    LIGHTING_BLUEPRINT_OPTIONS,
+    LIGHTING_CAM_SETTINGS,
+    LIGHTING_COLOR_GEL_OPTIONS,
+    LIGHTING_ENERGY_LEVEL_OPTIONS,
+    LIGHTING_FILL_STYLE_OPTIONS,
+    LIGHTING_KEY_STYLE_OPTIONS,
+    LIGHTING_PRACTICAL_OPTIONS,
+    LIGHTING_SAFETY_NOTES,
+    LIGHTING_SPECIAL_TECHNIQUES,
+    TIME_OF_DAY_OPTIONS,
+)
 
 class NoxPromptLightingMaster(PresetMixin):
     """Construct cinematic lighting blueprints with mood and safety notes."""
@@ -15,12 +30,15 @@ class NoxPromptLightingMaster(PresetMixin):
                 "key_style": (list(LIGHTING_KEY_STYLE_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Softbox Key"}),
             },
             "optional": {
+                "light_source": (list(LIGHT_SOURCE_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Daylight"}),
+                "light_quality": (list(LIGHT_QUALITY_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Soft Light"}),
+                "time_of_day": (list(TIME_OF_DAY_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Dusk"}),
                 "fill_style": (list(LIGHTING_FILL_STYLE_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Soft Fill"}),
                 "backlight": (list(LIGHTING_BACKLIGHT_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Rim Strip"}),
                 "practical": (list(LIGHTING_PRACTICAL_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Lantern Cluster"}),
                 "atmosphere": (list(LIGHTING_ATMOSPHERE_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Haze"}),
                 "color_gel": (list(LIGHTING_COLOR_GEL_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Teal & Orange"}),
-                "camera_settings": (list(LIGHTING_CAM_SETTINGS.keys()) + [CUSTOM_OPTION], {"default": "Cinematic"}),
+                "camera_settings": (list(LIGHTING_CAM_SETTINGS.keys()) + [CUSTOM_OPTION], {"default": "None"}),
                 "special_technique": (list(LIGHTING_SPECIAL_TECHNIQUES.keys()) + [CUSTOM_OPTION], {"default": "Shutter Drag"}),
                 "energy_level": (list(LIGHTING_ENERGY_LEVEL_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Dynamic"}),
                 "safety_profile": (list(["None"] + list(LIGHTING_SAFETY_NOTES.keys()) + [CUSTOM_OPTION]), {"default": "None"}),
@@ -30,6 +48,9 @@ class NoxPromptLightingMaster(PresetMixin):
                 "intensity_bias": ("FLOAT", {"default": 0.6, "min": 0.0, "max": 1.0, "step": 0.05}),
                 "blueprint_custom": ("STRING", {"default": ""}),
                 "key_style_custom": ("STRING", {"default": ""}),
+                "light_source_custom": ("STRING", {"default": ""}),
+                "light_quality_custom": ("STRING", {"default": ""}),
+                "time_of_day_custom": ("STRING", {"default": ""}),
                 "fill_style_custom": ("STRING", {"default": ""}),
                 "backlight_custom": ("STRING", {"default": ""}),
                 "practical_custom": ("STRING", {"default": ""}),
@@ -53,23 +74,29 @@ class NoxPromptLightingMaster(PresetMixin):
         self,
         blueprint,
         key_style,
+        light_source="Daylight",
+        light_quality="Soft Light",
+        time_of_day="Dusk",
         fill_style="Soft Fill",
         backlight="Rim Strip",
         practical="Lantern Cluster",
         atmosphere="Haze",
         color_gel="Teal & Orange",
-        camera_settings="Cinematic",
+    camera_settings="None",
         special_technique="Shutter Drag",
         energy_level="Dynamic",
         safety_profile="None",
         blueprint_custom="",
         key_style_custom="",
+        light_source_custom="",
+        light_quality_custom="",
+        time_of_day_custom="",
         fill_style_custom="",
         backlight_custom="",
         practical_custom="",
         atmosphere_custom="",
         color_gel_custom="",
-        camera_settings_custom="",
+    camera_settings_custom="",
         special_technique_custom="",
         energy_level_custom="",
         safety_profile_custom="",
@@ -83,6 +110,9 @@ class NoxPromptLightingMaster(PresetMixin):
         config = {
             "blueprint": blueprint,
             "key_style": key_style,
+            "light_source": light_source,
+            "light_quality": light_quality,
+            "time_of_day": time_of_day,
             "fill_style": fill_style,
             "backlight": backlight,
             "practical": practical,
@@ -94,6 +124,9 @@ class NoxPromptLightingMaster(PresetMixin):
             "safety_profile": safety_profile,
             "blueprint_custom": blueprint_custom,
             "key_style_custom": key_style_custom,
+            "light_source_custom": light_source_custom,
+            "light_quality_custom": light_quality_custom,
+            "time_of_day_custom": time_of_day_custom,
             "fill_style_custom": fill_style_custom,
             "backlight_custom": backlight_custom,
             "practical_custom": practical_custom,
@@ -129,6 +162,12 @@ class NoxPromptLightingMaster(PresetMixin):
         safety_profile = config.get("safety_profile", safety_profile)
         blueprint_custom = config.get("blueprint_custom", blueprint_custom)
         key_style_custom = config.get("key_style_custom", key_style_custom)
+        light_source = config.get("light_source", light_source)
+        light_quality = config.get("light_quality", light_quality)
+        time_of_day = config.get("time_of_day", time_of_day)
+        light_source_custom = config.get("light_source_custom", light_source_custom)
+        light_quality_custom = config.get("light_quality_custom", light_quality_custom)
+        time_of_day_custom = config.get("time_of_day_custom", time_of_day_custom)
         fill_style_custom = config.get("fill_style_custom", fill_style_custom)
         backlight_custom = config.get("backlight_custom", backlight_custom)
         practical_custom = config.get("practical_custom", practical_custom)
@@ -144,6 +183,9 @@ class NoxPromptLightingMaster(PresetMixin):
         intensity_bias = float(config.get("intensity_bias", intensity_bias))
         blueprint_prompt, blueprint_notes = _resolve_with_custom(blueprint, blueprint_custom, LIGHTING_BLUEPRINT_OPTIONS)
         key_prompt, key_notes = _resolve_with_custom(key_style, key_style_custom, LIGHTING_KEY_STYLE_OPTIONS)
+        source_prompt, source_notes = _resolve_with_custom(light_source, light_source_custom, LIGHT_SOURCE_OPTIONS)
+        quality_prompt, quality_notes = _resolve_with_custom(light_quality, light_quality_custom, LIGHT_QUALITY_OPTIONS)
+        time_prompt, time_notes = _resolve_with_custom(time_of_day, time_of_day_custom, TIME_OF_DAY_OPTIONS)
         fill_prompt, fill_notes = _resolve_with_custom(fill_style, fill_style_custom, LIGHTING_FILL_STYLE_OPTIONS)
         back_prompt, back_notes = _resolve_with_custom(backlight, backlight_custom, LIGHTING_BACKLIGHT_OPTIONS)
         practical_prompt, practical_notes = _resolve_with_custom(practical, practical_custom, LIGHTING_PRACTICAL_OPTIONS)
@@ -156,6 +198,9 @@ class NoxPromptLightingMaster(PresetMixin):
         intensity_text = self._describe_intensity(intensity_bias)
 
         lighting_fragments = [
+            source_prompt,
+            quality_prompt,
+            time_prompt,
             blueprint_prompt,
             key_prompt,
             fill_prompt,
@@ -164,6 +209,7 @@ class NoxPromptLightingMaster(PresetMixin):
             atmosphere_prompt,
             gel_prompt,
             technique_prompt,
+            f"camera setup: {camera_prompt}" if camera_prompt else "",
             f"energy mode: {energy_prompt}" if energy_prompt else "",
             f"subject: {subject_description.strip()}" if subject_description.strip() else "",
             f"environment: {environment_description.strip()}" if environment_description.strip() else "",
@@ -176,6 +222,9 @@ class NoxPromptLightingMaster(PresetMixin):
             lighting_prompt += f" Accents: {accent_notes.strip()}"
 
         mood_sections = [
+            f"Source: {source_notes}" if source_notes else "",
+            f"Quality: {quality_notes}" if quality_notes else "",
+            f"Time: {time_notes}" if time_notes else "",
             f"Blueprint: {blueprint_notes}" if blueprint_notes else "",
             f"Key: {key_notes}" if key_notes else "",
             f"Fill: {fill_notes}" if fill_notes else "",
@@ -185,12 +234,19 @@ class NoxPromptLightingMaster(PresetMixin):
             f"Gel: {gel_notes}" if gel_notes else "",
             f"Technique: {technique_notes}" if technique_notes else "",
             f"Energy: {energy_notes}" if energy_notes else "",
+            f"Camera: {camera_notes}" if camera_notes else "",
         ]
         mood_notes = " | ".join(section for section in mood_sections if section)
 
-        technical_sections = [camera_prompt]
-        if camera_notes:
-            technical_sections.append(f"Camera Notes: {camera_notes}")
+        technical_sections = []
+        if camera_prompt:
+            technical_sections.append(f"Camera Settings: {camera_prompt}")
+        if technique_prompt:
+            technical_sections.append(f"Technique: {technique_prompt}")
+        if technique_notes:
+            technical_sections.append(f"Technique Notes: {technique_notes}")
+        if energy_prompt:
+            technical_sections.append(f"Energy Mode: {energy_prompt}")
         safety_label = ""
         safety_text = ""
         if safety_profile == CUSTOM_OPTION:
