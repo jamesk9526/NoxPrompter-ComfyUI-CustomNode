@@ -53,7 +53,11 @@ _split_tokens = getattr(_common, "_split_tokens")
 
 
 NoxPromptUsageGuide = _nodes.NoxPromptUsageGuide
+NoxPromptKontextHelper = _nodes.NoxPromptKontextHelper
 NoxPromptOrganizer = _nodes.NoxPromptOrganizer
+NoxPromptPromptBoard = _nodes.NoxPromptPromptBoard
+NoxPromptShotlistOrganizer = _nodes.NoxPromptShotlistOrganizer
+NoxPromptProductionPlanner = _nodes.NoxPromptProductionPlanner
 NoxPromptEnhancer = _nodes.NoxPromptEnhancer
 NoxPromptBuilder = _nodes.NoxPromptBuilder
 NoxPromptPaletteMixer = _nodes.NoxPromptPaletteMixer
@@ -90,7 +94,11 @@ _BASE_EXPORTS = [
     "_resolve_with_custom",
     "_split_tokens",
     "NoxPromptUsageGuide",
+    "NoxPromptKontextHelper",
     "NoxPromptOrganizer",
+    "NoxPromptPromptBoard",
+    "NoxPromptShotlistOrganizer",
+    "NoxPromptProductionPlanner",
     "NoxPromptEnhancer",
     "NoxPromptBuilder",
     "NoxPromptPaletteMixer",

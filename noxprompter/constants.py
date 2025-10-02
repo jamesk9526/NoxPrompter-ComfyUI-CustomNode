@@ -31,13 +31,18 @@ LIGHT_SOURCE_OPTIONS = {
     "None": {"prompt": "", "summary": "No dedicated light source emphasis."},
     "Daylight": {"prompt": "daylight, sunlit ambience, warm highlights, natural light", "summary": "Sunlit scene with warm, natural illumination."},
     "Artificial Light": {"prompt": "artificial lighting, tungsten glow, controlled practicals", "summary": "Moody artificial lighting with cinematic practical sources."},
+    "LED Panel": {"prompt": "led panel key light, bi-color adjustment, consistent output", "summary": "Even LED panel source delivering reliable key illumination."},
     "Moonlight": {"prompt": "moonlight, cool lunar glow, silver rim lighting", "summary": "Cool moonlit ambience with gentle highlights."},
     "Practical Light": {"prompt": "practical lighting, lamps, diegetic light sources", "summary": "Scene lit by visible practical fixtures."},
+    "China Ball": {"prompt": "china ball lantern, diffused top light, wraparound softness", "summary": "Soft overhead china ball creating flattering wraparound glow."},
+    "Bounce Board": {"prompt": "bounce board fill, reflected daylight, gentle uplift", "summary": "Reflected fill from a bounce board lifting facial shadows."},
     "Firelight": {"prompt": "firelight, ember glow, flickering warm highlights", "summary": "Flickering firelight with warm dancing shadows."},
     "Fluorescent Light": {"prompt": "fluorescent lighting, clinical glow, cool overhead wash", "summary": "Flat fluorescent illumination with slight green tint."},
     "Overcast Light": {"prompt": "overcast sky, diffuse natural light, soft ambient shadows", "summary": "Soft overcast diffusion with muted contrast."},
     "Mixed Light": {"prompt": "mixed lighting sources, color contrast, layered temperatures", "summary": "Mixed lighting with contrasting color temperatures."},
     "Sunlight": {"prompt": "direct sunlight, high contrast shadows, golden highlights", "summary": "Direct sun with crisp highlights and defined shadows."},
+    "Practical Sconce": {"prompt": "wall sconce practical, warm pools, architectural accent", "summary": "Wall-mounted sconce casting warm pools along the set walls."},
+    "Monitor Glow": {"prompt": "computer monitor glow, cool screen light, digital wash", "summary": "Cool monitor light illuminating faces with tech-forward tones."},
     "Lantern Glow": {"prompt": "lantern-lit ambience, swaying warm pools, intimate highlights", "summary": "Lantern pools of light creating intimate pockets of warmth."},
     "Bioluminescence": {"prompt": "bioluminescent glow, organic shimmer, underwater luminosity", "summary": "Organic bioluminescence casting ethereal aquatic light."},
     "Holographic Panels": {"prompt": "holographic panel lighting, refracted neon, cascading spectrum wash", "summary": "Glitchy holographic panels bathing the scene in shimmering gradients."},
@@ -1307,6 +1312,10 @@ CAMERA_BASIC_OPTIONS = {
     "Rise and Drift": {"prompt": "vertical rise with lateral drift, floating move", "summary": "Combined vertical and lateral move producing gentle drift."},
     "Whip Tilt": {"prompt": "whip tilt, rapid vertical pivot, dynamic smear", "summary": "Fast tilt generating energetic motion blur streaks."},
     "First Person Perspective": {"prompt": "first-person perspective, immersive viewpoint, direct engagement", "summary": "POV angle placing viewer in character's shoes for intimacy."},
+    "Lock Off": {"prompt": "lock-off tripod shot, zero drift, framed composition", "summary": "Tripod-locked frame that stays perfectly static for dialogue or plates."},
+    "Tilt Down": {"prompt": "tilt down, vertical sweep, revealing detail", "summary": "Controlled tilt downward that hands focus from sky to subject detail."},
+    "Slider Reveal": {"prompt": "slider reveal, lateral slide from cover, unveiling subject", "summary": "Short slider move peeling past foreground to reveal the subject cleanly."},
+    "Rack Focus": {"prompt": "rack focus, shifting focal plane, foreground to background", "summary": "Lens pull that swaps emphasis between foreground and background elements."},
 }
 
 CAMERA_ADVANCED_OPTIONS = {
@@ -1338,6 +1347,10 @@ CAMERA_ADVANCED_OPTIONS = {
     "Submersible Pursuit": {"prompt": "submersible pursuit cam, underwater glide, bubble trails", "summary": "Waterproof chase rig gliding beside subjects beneath the surface."},
     "Micro Drone Dash": {"prompt": "micro drone dash, narrow corridor sweep, obstacle dodge", "summary": "Palm-sized drone weaving through tight spaces for kinetic POV."},
     "Holo Stage Orbit": {"prompt": "holo-stage tracked orbit, volumetric capture, light field shimmer", "summary": "Volumetric tracker orbiting holographic performers without parallax drift."},
+    "Steadicam Walk-and-Talk": {"prompt": "steadicam walk-and-talk, conversational glide, over-the-shoulder coverage", "summary": "Operator paces with actors to capture uninterrupted dialogue in motion."},
+    "Vehicle Mount": {"prompt": "vehicle-mounted camera, hood rig, rolling chase coverage", "summary": "Hard-mount rig locked to vehicle body for dependable chase plates."},
+    "Underwater Housing": {"prompt": "underwater housing move, neutral buoyancy, flowing aquatic tracking", "summary": "Submerged housing delivering smooth glides through underwater environments."},
+    "Motion Control Pass": {"prompt": "motion-control programmed repeat, millisecond precision, seamless vfx plate", "summary": "Repeatable motion-control move enabling identical passes for composites."},
 }
 
 VISUAL_STYLE_OPTIONS = {
@@ -1370,6 +1383,11 @@ VISUAL_STYLE_OPTIONS = {
     "Water Ink Hybrid": {"prompt": "watercolor ink hybrid, splatter gradients, bleeding pigments", "summary": "Hybrid watercolor and ink aesthetic with bleeding pigments."},
     "Painterly Sci-Fi": {"prompt": "painterly sci-fi, illustrated futurism, saturated scapes", "summary": "Illustrated sci-fi aesthetic with painterly strokes."},
     "Ceramic Render": {"prompt": "ceramic render style, glazed highlights, sculpted forms", "summary": "Rendered ceramics with glossy glaze and sculptural shapes."},
+    "Documentary Naturalism": {"prompt": "documentary naturalism, available light, handheld realism", "summary": "Grounded documentary look anchored in available light and honest textures."},
+    "Street Photography": {"prompt": "street photography aesthetic, candid city light, high contrast", "summary": "Candid street style with bold contrast and ambient urban lighting."},
+    "Studio Portraiture": {"prompt": "studio portrait lighting, seamless backdrop, controlled key", "summary": "Polished studio portrait look with precise key and fill ratios."},
+    "Golden Age Cinema": {"prompt": "golden age cinema, technicolor glow, classic staging", "summary": "Classic Hollywood look with rich technicolor warmth and formal framing."},
+    "Lifestyle Minimalism": {"prompt": "lifestyle minimalism, airy whites, natural props", "summary": "Clean lifestyle aesthetic showcasing bright whites and understated styling."},
 }
 
 SPECIAL_EFFECT_OPTIONS = {
@@ -1389,6 +1407,10 @@ SPECIAL_EFFECT_OPTIONS = {
     "Digital Rain": {"prompt": "digital rain code, cascading glyphs, matrix cascade", "summary": "Digital code rain overlay cascading across scene."},
     "Dust Explosion": {"prompt": "dust explosion effect, powder bloom, slow-motion plume", "summary": "Choreographed dust burst expanding in cinematic slow motion."},
     "Energy Ribbons": {"prompt": "energy ribbon trails, luminous arcs, kinetic swirls", "summary": "Luminous energy ribbons weaving through motion path."},
+    "Practical Rain": {"prompt": "practical rain rig, overhead water bars, backlit droplets", "summary": "In-camera rain effect using water bars and backlight for defined droplets."},
+    "Atmospheric Haze": {"prompt": "atmospheric hazer wash, soft diffusion, volumetric beams", "summary": "Even haze layer that reveals light shafts and adds depth."},
+    "Lens Flare Filter": {"prompt": "practical lens flare filter, streaked highlights, anamorphic bloom", "summary": "On-lens streak filter creating controllable practical flares."},
+    "Snow Machine": {"prompt": "practical snow machine, fluttering flakes, winter ambiance", "summary": "Biodegradable snow FX for convincing winter coverage."},
 }
 
 PALETTE_PROFILES = {
@@ -2383,10 +2405,6 @@ HUMAN_DESIGN_HAIR_STYLE_OPTIONS = {
 }
 
 HUMAN_DESIGN_GENITAL_OPTIONS = {
-    "Vulva Regular": {
-        "prompt": "adult vulva anatomy with soft natural contours",
-        "notes": "18+ only: describe consensual feminine anatomy respectfully.",
-    },
     "Vulva Detailed": {
         "prompt": "detailed adult vulva anatomy with realistic texture",
         "notes": "18+ only: provide anatomically accurate feminine detail with care.",
@@ -2638,10 +2656,6 @@ HUMAN_DESIGN_BEAUTY_MARK_OPTIONS = {
     "Eye Corner Fleck": {
         "prompt": "tiny fleck near the outer eye corner",
         "notes": "Delicate mark accentuating expressive gaze.",
-    },
-    "Shoulder Star": {
-        "prompt": "freckle cluster along the shoulder",
-        "notes": "Sun-kissed marks emphasizing lived-in warmth.",
     },
     "Hip Muse": {
         "prompt": "beauty mark along the hip curve",

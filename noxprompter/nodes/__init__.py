@@ -18,12 +18,20 @@ from .nox_prompt_palette_mixer import NoxPromptPaletteMixer
 from .nox_prompt_pipeline_combiner import NoxPromptPipelineCombiner
 from .nox_prompt_wardrobe_designer import NoxPromptWardrobeDesigner
 from .nox_prompt_usage_guide import NoxPromptUsageGuide
+from .nox_prompt_kontext_helper import NoxPromptKontextHelper
 from .nox_prompt_prompt_organizer import NoxPromptOrganizer
+from .nox_prompt_prompt_board import NoxPromptPromptBoard
+from .nox_prompt_shotlist_organizer import NoxPromptShotlistOrganizer
+from .nox_prompt_production_planner import NoxPromptProductionPlanner
 from .nox_prompt_nsfw_aio import NoxPromptNSFWAIO
 
 _NODE_CLASSES = (
     NoxPromptUsageGuide,
+    NoxPromptKontextHelper,
     NoxPromptOrganizer,
+    NoxPromptPromptBoard,
+    NoxPromptShotlistOrganizer,
+    NoxPromptProductionPlanner,
     NoxPromptEnhancer,
     NoxPromptBuilder,
     NoxPromptPaletteMixer,
@@ -53,7 +61,11 @@ def get_node_classes():
 
 __all__ = [
     "NoxPromptUsageGuide",
+    "NoxPromptKontextHelper",
     "NoxPromptOrganizer",
+    "NoxPromptPromptBoard",
+    "NoxPromptShotlistOrganizer",
+    "NoxPromptProductionPlanner",
     "NoxPromptEnhancer",
     "NoxPromptBuilder",
     "NoxPromptPaletteMixer",
