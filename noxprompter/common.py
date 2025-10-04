@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import os
 import re
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, Iterable, List, Tuple
 
 from .constants import CUSTOM_OPTION, PRESET_ROOT, PROMPT_CONTRADICTION_RULES
 
@@ -170,6 +170,40 @@ class PresetManager:
         return sorted(names)
 
 
+def option_keys(
+    options: Any,
+    *,
+    ensure_none: bool = True,
+    none_label: str = "None",
+    exclude_tokens: Iterable[str] | None = None,
+) -> List[str]:
+    """Return a sanitized list of option keys for dropdown inputs.
+
+    The helper keeps the original dictionary order, removes keys containing any of
+    the ``exclude_tokens`` (case-insensitive), and ensures a ``none_label`` entry
+    is available when ``ensure_none`` is True.
+    """
+
+    tokens = tuple(token.lower() for token in (exclude_tokens or ("custom",)))
+
+    if hasattr(options, "keys"):
+        iterator = options.keys()
+    else:
+        iterator = options
+
+    labels: List[str] = []
+    for key in iterator:
+        normalized = (key or "").lower()
+        if any(token in normalized for token in tokens):
+            continue
+        labels.append(key)
+
+    if ensure_none and none_label not in labels:
+        labels.insert(0, none_label)
+
+    return labels
+
+
 class PresetMixin:
     _preset_manager = PresetManager()
 
@@ -231,10 +265,14 @@ def _resolve_action_option(
 
 
 def _resolve_option(selection: str, table: Dict[str, Dict[str, str]]) -> Tuple[str, str]:
+    normalized = (selection or "").strip()
+    if normalized.lower() == "none":
+        return "", ""
+
     record = table.get(selection)
     if record:
         return record.get("prompt", ""), record.get("notes", record.get("summary", ""))
-    fallback = (selection or "").strip()
+    fallback = normalized
     return fallback, ""
 
 
@@ -322,4 +360,5 @@ __all__ = [
     "_split_tokens",
     "_format_notes",
     "detect_prompt_contradictions",
+    "option_keys",
 ]

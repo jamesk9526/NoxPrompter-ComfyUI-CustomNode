@@ -5,11 +5,13 @@ from __future__ import annotations
 from .nox_prompt_action_director import NoxPromptActionDirector
 from .nox_prompt_analyzer import NoxPromptAnalyzer
 from .nox_prompt_builder import NoxPromptBuilder
+from .nox_prompt_blueprint_generator import NoxPromptBlueprintGenerator
 from .nox_prompt_camz import NoxPromptCamz
 from .nox_prompt_camera_language import NoxPromptCameraMaster, NoxPromptCameraLanguage
 from .nox_prompt_character_creator import NoxPromptCharacterCreator
 from .nox_prompt_combiner import NoxPromptCombiner
 from .nox_prompt_enhancer import NoxPromptEnhancer
+from .nox_prompt_prompt_inspector import NoxPromptPromptInspector
 from .nox_prompt_human_designer import NoxPromptHumanDesigner
 from .nox_prompt_lighting_master import NoxPromptLightingMaster
 from .nox_prompt_narrative_weaver import NoxPromptNarrativeWeaver
@@ -39,7 +41,9 @@ _NODE_CLASSES = (
     NoxPromptProductionPlanner,
     NoxPromptEnhancer,
     NoxPromptBuilder,
+    NoxPromptBlueprintGenerator,
     NoxPromptPaletteMixer,
+    NoxPromptPromptInspector,
     NoxPromptNarrativeWeaver,
     NoxPromptCharacterCreator,
     NoxPromptHumanDesigner,
@@ -77,7 +81,9 @@ __all__ = [
     "NoxPromptProductionPlanner",
     "NoxPromptEnhancer",
     "NoxPromptBuilder",
+    "NoxPromptBlueprintGenerator",
     "NoxPromptPaletteMixer",
+    "NoxPromptPromptInspector",
     "NoxPromptNarrativeWeaver",
     "NoxPromptCharacterCreator",
     "NoxPromptHumanDesigner",

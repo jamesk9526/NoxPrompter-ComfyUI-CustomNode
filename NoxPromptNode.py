@@ -61,7 +61,9 @@ NoxPromptShotlistOrganizer = _nodes.NoxPromptShotlistOrganizer
 NoxPromptProductionPlanner = _nodes.NoxPromptProductionPlanner
 NoxPromptEnhancer = _nodes.NoxPromptEnhancer
 NoxPromptBuilder = _nodes.NoxPromptBuilder
+NoxPromptBlueprintGenerator = _nodes.NoxPromptBlueprintGenerator
 NoxPromptPaletteMixer = _nodes.NoxPromptPaletteMixer
+NoxPromptPromptInspector = _nodes.NoxPromptPromptInspector
 NoxPromptNarrativeWeaver = _nodes.NoxPromptNarrativeWeaver
 NoxPromptCharacterCreator = _nodes.NoxPromptCharacterCreator
 NoxPromptHumanDesigner = _nodes.NoxPromptHumanDesigner
@@ -107,7 +109,9 @@ _BASE_EXPORTS = [
     "NoxPromptProductionPlanner",
     "NoxPromptEnhancer",
     "NoxPromptBuilder",
+    "NoxPromptBlueprintGenerator",
     "NoxPromptPaletteMixer",
+    "NoxPromptPromptInspector",
     "NoxPromptNarrativeWeaver",
     "NoxPromptCharacterCreator",
     "NoxPromptHumanDesigner",

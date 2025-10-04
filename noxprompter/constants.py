@@ -2076,6 +2076,17 @@ CHARACTER_ROLE_OPTIONS = {
 }
 
 WARDROBE_BASE_GARMENT_OPTIONS = {
+    "Athletic Wear": {"prompt": "high-performance athletic wear, breathable mesh", "notes": "Sleek, functional attire designed for movement and endurance."},
+    "Bohemian Maxi": {"prompt": "flowing bohemian maxi dress, layered prints, relaxed waist", "notes": "Lightweight, travel-friendly dress with breezy motion for outdoor scenes."},
+    "Punk Layered": {"prompt": "punk layered ensemble, distressed tees, safety-pin accents", "notes": "Edgy street style mixing DIY textures and bold hardware details."},
+    "Steampunk Coat": {"prompt": "steampunk frock coat, brass buckles, tailored waist", "notes": "Victorian-inspired outerwear with mechanical trimmings for period-fusion looks."},
+    "Shimmer Slip": {"prompt": "silvery shimmer slip dress, bias-cut, delicate straps", "notes": "Minimalist evening layer that catches highlights and creates elegant movement."},
+    "Crop Top & Miniskirt": {"prompt": "coordinated crop top with miniskirt, playful cut, modern edge", "notes": "Youthful two-piece set ideal for active or nightlife scenes."},
+    "Tribal Wraps": {"prompt": "layered tribal wraps, woven sashes, textured panels", "notes": "Ethnographic-inspired drapery conveying handmade craft and ritual cues."},
+    "Armor Tunic": {"prompt": "reinforced armor tunic, leather inlays, riveted seams", "notes": "Light protective layer balancing mobility and battlefield aesthetic."},
+    "Festival Kimono": {"prompt": "short festival kimono, bold prints, tassel ties", "notes": "Playful performer piece designed for movement and color interaction."},
+    "Parka Anorak": {"prompt": "insulated parka anorak, storm hood, taped seams", "notes": "Practical cold-weather outer layer built for expedition and realism."},
+    "Ritual Vestments": {"prompt": "ceremonial vestments, embroidered panels, sigil trims", "notes": "Formal ritualwear that signals status and cultural specificity."},
     "Battle Dress": {"prompt": "battle dress core, reinforced bodice, articulated plating", "notes": "Armor-meets-fashion silhouette balancing protection and movement."},
     "yoga Pants & Tank": {"prompt": "stretch-fit yoga pants paired with breathable tank top", "notes": "Flexible activewear for dynamic poses and fluid motion."},
     "Evening Suit": {"prompt": "sleek evening suit, tailored fit", "notes": "Sophisticated formalwear with sharp lines and classic elegance."},
@@ -2876,6 +2887,11 @@ HUMAN_DESIGN_BEAUTY_MARK_OPTIONS = {
 }
 
 WARDROBE_COLORWAY_OPTIONS = {
+    "Metallic Sheen": {"prompt": "metallic sheen palette, silver, gold, bronze", "notes": "Reflective metallics catching light dynamically."},
+    "Neon Glow": {"prompt": "neon glow palette, electric pink, bright cyan", "notes": "Vibrant neon colors radiating energy."},
+    "Floral Fantasy": {"prompt": "floral fantasy palette, blooming petals, lush greens", "notes": "Romantic floral hues evoking a garden paradise."},
+    "Geometric Harmony": {"prompt": "geometric harmony palette, soft shapes, balanced colors", "notes": "Soothing palette with a focus on shape and form."},
+    "Abstract Vortex": {"prompt": "abstract vortex palette, swirling colors, dynamic movement", "notes": "Energetic palette capturing the essence of motion."},
     "Monochrome Obsidian": {"prompt": "monochrome obsidian palette, layered blacks, matte to gloss", "notes": "Black-on-black layering emphasizing texture over hue."},
     "Solar Burst": {"prompt": "solar burst gradient, saffron to rose gold", "notes": "Sunrise gradient igniting dramatic silhouettes."},
     "Moonlit Pastel": {"prompt": "moonlit pastel wash, lavender mist, silver trims", "notes": "Soft pastels cooled by moonlit silver accents."},
@@ -2904,6 +2920,10 @@ WARDROBE_COLORWAY_OPTIONS = {
 }
 
 WARDROBE_PATTERN_OPTIONS = {
+    "none": {"prompt": "plain fabric, no pattern", "notes": "Clean, unadorned fabric showcasing silhouette."},
+    "normal": {"prompt": "subtle fabric texture, fine weave", "notes": "Light texture adding depth without distraction."},
+    "bold": {"prompt": "bold graphic patterns, high contrast", "notes": "Striking patterns that command attention."},
+    "Floral": {"prompt": "floral motifs, blooming vines", "notes": "Lush botanical patterns evoking garden elegance."},
     "Fractal": {"prompt": "fractal tessellation pattern, recursive geometry", "notes": "Endless fractal motif that feels otherworldly."},
     "Constellation": {"prompt": "constellation embroidery, starlit map", "notes": "Star chart motifs mapping ancestral skies."},
     "Circuitry": {"prompt": "circuit board etching, luminous trace", "notes": "Printed circuits glowing with micro current."},
@@ -3372,6 +3392,12 @@ NSFW_POSE_PROFILES = {
         "prompt": "",
         "notes": "No specific pose emphasis.",
     },
+    "XXX laying" : {
+        "prompt": "sensual laying pose, relaxed limbs, inviting gaze, legs spread, gentials showing toward caemra with legs apart",
+        "notes": ""
+    },
+
+
     "Suggestive Pinup": {
         "prompt": "suggestive pinup pose, playful hip tilt, confident eye contact",
         "notes": "Keep the focus on charisma and silhouette rather than explicit detail.",
@@ -3439,6 +3465,87 @@ NSFW_WARDROBE_STYLES = {
         "prompt": "",
         "notes": "No wardrobe styling adjustments.",
     },
+    "XXX Fetish Noir": {
+        "prompt": "leather corset, thigh-high boots, wet-look finish, smoky makeup",
+        "notes": "Fetish-influenced editorial styling; emphasize agency, secure fittings, and confident posture.",
+    },
+    "XXX Bondage Lace": {
+        "prompt": "delicate lace with decorative strap harness, inset O-rings, sheer panels",
+        "notes": "Suggestive harness layering while keeping composition tasteful and consent-forward.",
+    },
+    "XXX Open-Back Bodysuit": {
+        "prompt": "open-back bodysuit with cheek-baring cutouts, high-leg silhouette",
+        "notes": "Bold exposure focused on silhouette and form—frame to remain artistic rather than explicit.",
+    },
+    "XXX Sheer Tease": {
+        "prompt": "ultra-sheer mesh dress, visible silhouette, strategic opaque trims",
+        "notes": "Plays with implied nudity through translucence; maintain tasteful coverage in framing.",
+    },
+    "XXX Latex Lingerie": {
+        "prompt": "latex bra and brief set, high-gloss contour seams, polished finishing",
+        "notes": "Strong fetish aesthetic—watch specular highlights and maintain performer comfort.",
+    },
+    "XXX Peekaboo Cutouts": {
+        "prompt": "micro-cutout lingerie with geometric straps, peekaboo reveals, bold hardware",
+        "notes": "Edgy, playful reveals—balance with confident posing and clear consent cues.",
+    },
+    "XXX Wet-Look Bikini": {
+        "prompt": "wet-look bikini, glistening finish, water-sheen styling",
+        "notes": "Beach-club adult vibe emphasizing texture and sheen without explicit detail.",
+    },
+    "XXX Chains & Fringe": {
+        "prompt": "metal chain accents woven with fringe trims, kinetic movement on hips and shoulders",
+        "notes": "Dynamic stage-ready outfit—secure attachments and avoid sharp hardware near skin.",
+    },
+    "XXX Decorative Harness": {
+        "prompt": "ornamental harness layered over silk lingerie, metallic rings and polished straps",
+        "notes": "Accessorizing harness for adult editorial looks; ensure comfort and non-restrictive wear.",
+    },
+    "XXX Velvet Restraint": {
+        "prompt": "velvet harness and matching cuffs, plush textures, deep jewel tones",
+        "notes": "Soft-fetish aesthetic prioritizing plush materials and consensual visual language.",
+    },
+    "Boudoir Chic": {
+        "prompt": "silk camisole with lace robe, soft pastel palette, delicate straps",
+        "notes": "Blend romantic fabrics with intimate lighting for tender boudoir vibes.",
+    },
+    "Retro Pinup": {
+        "prompt": "vintage pinup set, high-waist briefs, polka-dot prints, curled hair",
+        "notes": "Classic curves and playful props for nostalgic glamour.",
+    },
+    "Sporty Crop": {
+        "prompt": "athletic crop top and track shorts, breathable mesh, sporty stripes",
+        "notes": "High-energy active styling for dynamic movement and casual confidence.",
+    },
+    "Costume Play": {
+        "prompt": "themed cosplay-inspired outfit, character-evocative silhouette, playful accessories",
+        "notes": "Creative, character-led styling while avoiding direct trademarked likenesses.",
+    },
+    "Satin Slip": {
+        "prompt": "bias-cut satin slip dress, whisper-thin sheen, minimalist straps",
+        "notes": "Elegant and understated—works beautifully with soft directional light.",
+    },
+    "Sheer Lace Overlay": {
+        "prompt": "sheer lace overlay layered over opaque panels, floral embroidery accents",
+        "notes": "Use layered coverage to suggest form while maintaining tasteful composition.",
+    },
+    "Bondage-Inspired": {
+        "prompt": "strap harness elements layered over garments, reinforced seams, polished buckles",
+        "notes": "Aesthetic nod to fetishwear; emphasize secure construction and consensual presentation.",
+    },
+    "Festival Rave": {
+        "prompt": "neon micro-top, mesh panels, glitter accents and playful tassels",
+        "notes": "Vibrant, high-energy palette built for nightlife and festival atmospheres.",
+    },
+    "Sport-Luxe": {
+        "prompt": "luxury athleisure, cashmere-lined hoodie, streamlined joggers, subtle sheen",
+        "notes": "Mix comfort with elevated materials for a refined active look.",
+    },
+    "Corporate Seductress": {
+        "prompt": "tailored blazer worn over silk blouse and pencil skirt, assertive heels",
+        "notes": "Power-dressing with a subtle sensual edge suitable for editorial styling.",
+    },
+
     "Casual": {
         "prompt": "comfortable casual wear, soft fabrics, relaxed fit",
         "notes": "Emphasize comfort and ease of movement.",
@@ -3452,8 +3559,12 @@ NSFW_WARDROBE_STYLES = {
         "notes": "Highlight femininity and elegance through intricate lace details.",
     },
     "Torn Yoga Pants": {
-        "prompt": "torn yoga pants, torn crotch, snug fit, athletic vibe",
+        "prompt": "ripped in the crotch, torn yoga pants, torn crotch, snug fit, athletic vibe",
         "notes": "Combine comfort with a hint of edginess.",
+    },
+    "Ripped Denim Shorts": {
+        "prompt": "ripped in the crotch denim shorts, frayed edges, casual cool",
+        "notes": "Perfect for laid-back summer vibes with a touch of edge.",
     },
     "Torn Jeans": {
         "prompt": "ripped denim jeans, distressed details, casual cool",
@@ -3535,6 +3646,10 @@ NSFW_TONE_MOODS = {
     "None": {
         "prompt": "",
         "notes": "No additional mood guidance.",
+    },
+    "XXX Extreme": {
+        "prompt": "extreme adult vibe, high-energy, bold expression",
+        "notes": "Maximize intensity while ensuring clear consent and agency cues.",
     },
     "Erotic" : {
         "prompt": "sensual erotic vibe, smoldering gaze, intimate setting",
@@ -3821,6 +3936,7 @@ NSFW_HEAT_LEVELS = {
         "notes": "No additional heat descriptors applied.",
         "negative": "",
     },
+
     "Subtle": {
         "prompt": "subtle allure, whispered tension, restrained tease",
         "notes": "Ideal for low-intensity boudoir and soft editorial scenarios.",
@@ -3842,7 +3958,7 @@ NSFW_HEAT_LEVELS = {
         "negative": "demeaning scenarios, non-consensual direction",
     },
 
-    "Solo XXX": {
+    "Solo XXX sensual_fingering": {
         "prompt": "solo xxx energy, unapologetic self-expression, empowered allure, sensual_fingering,",
         "notes": "Celebrate solo adult confidence with clear agency messaging.",
         "negative": "non-consensual themes, degrading scenarios",
@@ -3868,6 +3984,12 @@ NSFW_HEAT_LEVELS = {
         "notes": "Use the custom heat prompt input for adult-only heat descriptors.",
         "negative": "",
     },
+    "XXX Extreme": {
+        "prompt": "extreme adult intensity, boundary-pushing exhibitionism, high-octane performance",
+        "notes": "For explicit adult contexts only—ensure all elements emphasize consent and empowerment.",
+        "negative": "non-consensual themes, degrading scenarios, fetish extremes",
+    },
+
 }
 
 NSFW_EXPLICITNESS_LEVELS = {
@@ -3899,6 +4021,7 @@ NSFW_EXPLICITNESS_LEVELS = {
         "prompt": "erotic showcase, full nude confidence, provocative glimmer lighting",
         "negative": "pornographic close-ups, bodily fluids, explicit intercourse depiction",
     },
+    
     "XXX Performance": {
         "prompt": "adult-stage performance vibe, theatrical erotica, high-voltage seduction",
         "negative": "graphic sexual acts, fetish degradation, non-consensual scenarios",
@@ -3931,6 +4054,8 @@ NSFW_BASELINE_NEGATIVES = [
     "youth",
     "loli",
     "shota",
+    "prepubescent",
+    "childlike",
     "young-looking",
     "non-consensual",
     "abuse",
@@ -3969,6 +4094,11 @@ PROMPT_CONTRADICTION_RULES = [
                 "midday",
                 "high noon",
                 "noonday",
+                "afternoon",
+                "sun-drenched",
+                "sun-soaked",
+                "broad daylight",
+
             ],
             "night": [
                 "night",
@@ -3977,6 +4107,11 @@ PROMPT_CONTRADICTION_RULES = [
                 "moonlit",
                 "nocturnal",
                 "after-hours",
+                "dark skies",
+                "starry night",
+                "twinkling stars",
+                "city lights",
+                "urban glow",
             ],
             "dawn": ["dawn", "sunrise", "first light"],
             "dusk": ["dusk", "sunset", "twilight", "golden hour"],

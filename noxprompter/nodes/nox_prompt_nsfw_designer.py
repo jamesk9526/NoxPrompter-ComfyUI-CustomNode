@@ -37,10 +37,6 @@ class NoxPromptNSFWDesigner(PresetMixin):
                     list(NSFW_LIGHTING_SETUPS.keys()),
                     {"default": "Candlelit Warmth"},
                 ),
-                "camera_framing": (
-                    list(NSFW_CAMERA_FRAMING.keys()),
-                    {"default": "Intimate Portrait"},
-                ),
                 "explicitness_level": (
                     list(NSFW_EXPLICITNESS_LEVELS.keys()),
                     {"default": "Implied Nude"},
@@ -85,14 +81,6 @@ class NoxPromptNSFWDesigner(PresetMixin):
                     "STRING",
                     {"multiline": True, "default": ""},
                 ),
-                "custom_camera_prompt": (
-                    "STRING",
-                    {"multiline": True, "default": ""},
-                ),
-                "custom_camera_notes": (
-                    "STRING",
-                    {"multiline": True, "default": ""},
-                ),
                 "custom_set_prompt": (
                     "STRING",
                     {"multiline": True, "default": ""},
@@ -122,6 +110,10 @@ class NoxPromptNSFWDesigner(PresetMixin):
                     {"multiline": True, "default": ""},
                 ),
                 "custom_heat_negative": (
+                    "STRING",
+                    {"multiline": True, "default": ""},
+                ),
+                "camera_notes": (
                     "STRING",
                     {"multiline": True, "default": ""},
                 ),
@@ -158,7 +150,6 @@ class NoxPromptNSFWDesigner(PresetMixin):
         wardrobe_style,
         tone_profile,
         lighting_setup="Candlelit Warmth",
-        camera_framing="Intimate Portrait",
         explicitness_level="Implied Nude",
         set_design="None",
         heat_profile="Sensual",
@@ -175,8 +166,6 @@ class NoxPromptNSFWDesigner(PresetMixin):
         custom_tone_notes="",
         custom_lighting_prompt="",
         custom_lighting_notes="",
-        custom_camera_prompt="",
-        custom_camera_notes="",
         custom_set_prompt="",
         custom_set_notes="",
         custom_explicitness_prompt="",
@@ -186,6 +175,7 @@ class NoxPromptNSFWDesigner(PresetMixin):
         custom_heat_prompt="",
         custom_heat_notes="",
         custom_heat_negative="",
+        camera_notes="",
         preset_action="none",
         preset_name="",
     ):
@@ -196,7 +186,6 @@ class NoxPromptNSFWDesigner(PresetMixin):
             "wardrobe_style": wardrobe_style,
             "tone_profile": tone_profile,
             "lighting_setup": lighting_setup,
-            "camera_framing": camera_framing,
             "explicitness_level": explicitness_level,
             "set_design": set_design,
             "heat_profile": heat_profile,
@@ -213,8 +202,6 @@ class NoxPromptNSFWDesigner(PresetMixin):
             "custom_tone_notes": custom_tone_notes,
             "custom_lighting_prompt": custom_lighting_prompt,
             "custom_lighting_notes": custom_lighting_notes,
-            "custom_camera_prompt": custom_camera_prompt,
-            "custom_camera_notes": custom_camera_notes,
             "custom_set_prompt": custom_set_prompt,
             "custom_set_notes": custom_set_notes,
             "custom_explicitness_prompt": custom_explicitness_prompt,
@@ -224,6 +211,7 @@ class NoxPromptNSFWDesigner(PresetMixin):
             "custom_heat_prompt": custom_heat_prompt,
             "custom_heat_notes": custom_heat_notes,
             "custom_heat_negative": custom_heat_negative,
+            "camera_notes": camera_notes,
         }
 
         config, preset_status = self._apply_preset_action(
@@ -239,7 +227,6 @@ class NoxPromptNSFWDesigner(PresetMixin):
         wardrobe_style = config.get("wardrobe_style", wardrobe_style)
         tone_profile = config.get("tone_profile", tone_profile)
         lighting_setup = config.get("lighting_setup", lighting_setup)
-        camera_framing = config.get("camera_framing", camera_framing)
         explicitness_level = config.get("explicitness_level", explicitness_level)
         set_design = config.get("set_design", set_design)
         heat_profile = config.get("heat_profile", heat_profile)
@@ -256,8 +243,6 @@ class NoxPromptNSFWDesigner(PresetMixin):
         custom_tone_notes = config.get("custom_tone_notes", custom_tone_notes)
         custom_lighting_prompt = config.get("custom_lighting_prompt", custom_lighting_prompt)
         custom_lighting_notes = config.get("custom_lighting_notes", custom_lighting_notes)
-        custom_camera_prompt = config.get("custom_camera_prompt", custom_camera_prompt)
-        custom_camera_notes = config.get("custom_camera_notes", custom_camera_notes)
         custom_set_prompt = config.get("custom_set_prompt", custom_set_prompt)
         custom_set_notes = config.get("custom_set_notes", custom_set_notes)
         custom_explicitness_prompt = config.get("custom_explicitness_prompt", custom_explicitness_prompt)
@@ -267,6 +252,7 @@ class NoxPromptNSFWDesigner(PresetMixin):
         custom_heat_prompt = config.get("custom_heat_prompt", custom_heat_prompt)
         custom_heat_notes = config.get("custom_heat_notes", custom_heat_notes)
         custom_heat_negative = config.get("custom_heat_negative", custom_heat_negative)
+        camera_notes = config.get("camera_notes", camera_notes)
 
         pose_cfg = self._resolve_nsfw_option(
             pose_profile,
@@ -291,12 +277,6 @@ class NoxPromptNSFWDesigner(PresetMixin):
             NSFW_LIGHTING_SETUPS,
             custom_prompt=custom_lighting_prompt,
             custom_notes=custom_lighting_notes,
-        )
-        camera_cfg = self._resolve_nsfw_option(
-            camera_framing,
-            NSFW_CAMERA_FRAMING,
-            custom_prompt=custom_camera_prompt,
-            custom_notes=custom_camera_notes,
         )
         explicit_cfg = self._resolve_nsfw_option(
             explicitness_level,
@@ -345,10 +325,11 @@ class NoxPromptNSFWDesigner(PresetMixin):
             pose_cfg.get("prompt", ""),
             wardrobe_cfg.get("prompt", ""),
             lighting_cfg.get("prompt", ""),
-            camera_cfg.get("prompt", ""),
         ]
         if detail_accent.strip():
             descriptive_chunks.append(detail_accent.strip())
+        if camera_notes.strip():
+            descriptive_chunks.append(camera_notes.strip())
         descriptive_line = ", ".join(chunk for chunk in descriptive_chunks if chunk)
         if descriptive_line:
             fragments.append(descriptive_line)
@@ -378,11 +359,12 @@ class NoxPromptNSFWDesigner(PresetMixin):
             wardrobe_cfg.get("notes"),
             tone_cfg.get("notes"),
             lighting_cfg.get("notes"),
-            camera_cfg.get("notes"),
             explicit_cfg.get("notes"),
             set_cfg.get("notes"),
             heat_cfg.get("notes"),
         ]
+        if camera_notes.strip():
+            notes_sources.append(camera_notes.strip())
         curated_notes = [note for note in notes_sources if note]
         if curated_notes:
             safety_parts.extend(list(dict.fromkeys(curated_notes)))

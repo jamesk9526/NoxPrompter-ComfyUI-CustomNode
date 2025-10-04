@@ -8,7 +8,7 @@ Modular prompt-engineering tools for ComfyUI that turn cinematic ideas into prod
 
 ## Highlights
 
-- **20 purpose-built nodes** spanning builders, character design, wardrobe, lighting, camera direction, NSFW safeguards, streaming prompts, and pipeline organization.
+- **22 purpose-built nodes** spanning builders, character design, wardrobe, lighting, camera direction, NSFW safeguards, streaming prompts, analysis, and pipeline organization.
 - **Formula-driven Wan 2.2 builder** with curated motion, composition, and stylization vocabularies plus inline overrides and randomization; pair with Lighting Master for centralized lighting control.
 - **Preset-friendly companions** – every major node supports save/load/list actions so you can build libraries of looks, poses, palettes, and camera moves.
 - **Consistency tooling** – Narrative Weaver, Palette Mixer, Organizer, and Pipeline Combiner keep every fragment aligned, with automatic contradiction warnings.
@@ -23,11 +23,13 @@ Modular prompt-engineering tools for ComfyUI that turn cinematic ideas into prod
 
 ### Core Builder Stack
 - `NoxPromptBuilder` *(NoxPrompter/Builders)* – Wan 2.2 style prompt assembler with basic/advanced formulas, keyword styling, randomization, preset storage, and pass-through inputs for Lighting Master and Camera Master outputs.
+- `NoxPromptBlueprintGenerator` *(NoxPrompter/Builders)* – Generates ready-to-use subject, scene, motion, hook, palette override, and insight strings from curated archetype, profession, temperament, environment, lighting, and style tables with custom overrides and presets.
 - `NoxPromptPaletteMixer` *(NoxPrompter/Companions)* – Produces palette override strings, custom keyword bundles, and usage notes from cinematic mood profiles.
 - `NoxPromptNarrativeWeaver` *(NoxPrompter/Companions)* – Outputs subject, scene, motion, hook, and descriptor text blocks from archetype + tone selectors.
 - `NoxPromptCombiner` *(NoxPrompter/Text)* – Blends up to three prompts via concatenate, alternate, blend, or weighted strategies.
 - `NoxPromptEnhancer` *(NoxPrompter/Text)* – Adds emphasis, quality tags, and style packs (artistic, photorealistic, cinematic, fantasy, sci-fi, portrait) to any prompt.
 - `NoxPromptAnalyzer` *(NoxPrompter/Analysis)* – Reports word count, complexity, detected style, sentiment, and optional quick critiques for the provided prompt.
+- `NoxPromptPromptInspector` *(NoxPrompter/Analysis)* – Cleans, deduplicates, and organizes prompt fragments, highlights contradiction warnings, and produces fragment lists and metrics for QA passes.
 
 ### Character & Styling Suite
 - `NoxPromptCharacterCreator` *(NoxPrompter/Characters)* – Builds lore-rich hero bios, story hooks, and prompt fragments with presetable archetypes and traits.
@@ -66,7 +68,7 @@ After the restart, right-click the canvas and confirm a **NoxPrompter** category
 
 1. **Ask the Usage Guide** – Drop `NoxPromptUsageGuide`, set `detail_level = Extended`, and review the generated workflow and safety pointers in ComfyUI.
 2. **Define your hero** – Chain `NoxPromptCharacterCreator → NoxPromptHumanDesigner → NoxPromptWardrobeDesigner` to lock identity, anatomy, and wardrobe language.
-3. **Seed the narrative** – Use `NoxPromptNarrativeWeaver` for subject/scene/motion text, and `NoxPromptPaletteMixer` for palette overrides + keywords.
+3. **Seed the narrative** – Run `NoxPromptBlueprintGenerator` for a quick subject/scene/motion/emotion blueprint, refine with `NoxPromptNarrativeWeaver`, and capture palette overrides + keywords via `NoxPromptPaletteMixer`.
 4. **Assemble the master prompt** – Feed the outputs into `NoxPromptBuilder` (Advanced Formula) and optionally enable `randomize_missing` with a seed for repeatable variations.
 5. **Polish or enhance** – Run the builder result through `NoxPromptEnhancer` or `NoxPromptCombiner` to layer styles, emphasis, or alternate prompts.
 6. **Add direction** – `NoxPromptActionDirector` and/or `NoxPromptLightingMaster` create dedicated camera + lighting clauses; `NoxPromptCamz` covers streaming personas.
@@ -76,6 +78,7 @@ After the restart, right-click the canvas and confirm a **NoxPrompter** category
 ## Detailed Usage
 
 ### Builder & Companion Trio
+- **Blueprint Generator** – Start with `NoxPromptBlueprintGenerator` to rapidly draft subject, scene, motion, emotion, and palette overrides from curated dropdowns. Its outputs slot directly into the Builder (subject/scene/motion), Palette Mixer (overrides), or Organizer (insight notes) when you need an ideation-safe baseline.
 - **Narrative Weaver → Palette Mixer → Prompt Builder** gives you richly described subject/scene/motion text plus cinematic palette overrides in seconds.
 - Set `keyword_style` to **auto** for labeled clauses, **inline** for free-flow descriptions, or **compact** for dense Wan 2.2 strings.
 - Turn on `randomize_missing` when dropdowns are left at “None”; the combination of curated vocabularies and seeded randomness is great for ideation batches.
@@ -103,6 +106,7 @@ After the restart, right-click the canvas and confirm a **NoxPrompter** category
    - Pipeline order referencing every node used (matches the Usage Guide’s recommendations).
    - Reference notes grouped by theme (camera, motion, palette, safety) with contradiction warnings when descriptors disagree.
 - `NoxPromptOrganizer` is perfect for presentation. Select a structure mode (Builder-first, Narrative-first, Lighting-first), and it will output a formatted prompt, a missing-section list, and a quick overview for review sessions.
+- `NoxPromptPromptInspector` runs a QA pass on any prompt or negative block—splitting fragments, deduplicating them, running contradiction detection, and emitting organized fragments plus metrics you can feed into review docs or the Organizer.
 
 ### Preset Manager (Shared Behavior)
 - Most nodes expose `preset_action` (`none`, `save`, `load`, `list`) and `preset_name`. These hook into the shared `PresetManager` to store JSON presets under `ComfyNoxPrompter/presets/<node_name>/`.

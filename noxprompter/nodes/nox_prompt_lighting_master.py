@@ -1,14 +1,12 @@
 from __future__ import annotations
 
-from ..common import PresetMixin, _resolve_with_custom
+from ..common import PresetMixin, _resolve_option, option_keys
 from ..constants import (
-    CUSTOM_OPTION,
     LIGHT_SOURCE_OPTIONS,
     LIGHT_QUALITY_OPTIONS,
     LIGHTING_ATMOSPHERE_OPTIONS,
     LIGHTING_BACKLIGHT_OPTIONS,
     LIGHTING_BLUEPRINT_OPTIONS,
-    LIGHTING_CAM_SETTINGS,
     LIGHTING_COLOR_GEL_OPTIONS,
     LIGHTING_ENERGY_LEVEL_OPTIONS,
     LIGHTING_FILL_STYLE_OPTIONS,
@@ -26,40 +24,72 @@ class NoxPromptLightingMaster(PresetMixin):
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "blueprint": (list(LIGHTING_BLUEPRINT_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Three-Point"}),
-                "key_style": (list(LIGHTING_KEY_STYLE_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Softbox Key"}),
+                "custom_prompt": (
+                    "STRING",
+                    {
+                        "multiline": True,
+                        "default": "",
+                    },
+                ),
+                "blueprint": (
+                    option_keys(LIGHTING_BLUEPRINT_OPTIONS),
+                    {"default": "Three-Point"},
+                ),
+                "key_style": (
+                    option_keys(LIGHTING_KEY_STYLE_OPTIONS),
+                    {"default": "Softbox Key"},
+                ),
             },
             "optional": {
-                "light_source": (list(LIGHT_SOURCE_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Daylight"}),
-                "light_quality": (list(LIGHT_QUALITY_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Soft Light"}),
-                "time_of_day": (list(TIME_OF_DAY_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Dusk"}),
-                "fill_style": (list(LIGHTING_FILL_STYLE_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Soft Fill"}),
-                "backlight": (list(LIGHTING_BACKLIGHT_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Rim Strip"}),
-                "practical": (list(LIGHTING_PRACTICAL_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Lantern Cluster"}),
-                "atmosphere": (list(LIGHTING_ATMOSPHERE_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Haze"}),
-                "color_gel": (list(LIGHTING_COLOR_GEL_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Teal & Orange"}),
-                "camera_settings": (list(LIGHTING_CAM_SETTINGS.keys()) + [CUSTOM_OPTION], {"default": "None"}),
-                "special_technique": (list(LIGHTING_SPECIAL_TECHNIQUES.keys()) + [CUSTOM_OPTION], {"default": "Shutter Drag"}),
-                "energy_level": (list(LIGHTING_ENERGY_LEVEL_OPTIONS.keys()) + [CUSTOM_OPTION], {"default": "Dynamic"}),
-                "safety_profile": (list(["None"] + list(LIGHTING_SAFETY_NOTES.keys()) + [CUSTOM_OPTION]), {"default": "None"}),
+                "light_source": (
+                    option_keys(LIGHT_SOURCE_OPTIONS),
+                    {"default": "Daylight"},
+                ),
+                "light_quality": (
+                    option_keys(LIGHT_QUALITY_OPTIONS),
+                    {"default": "Soft Light"},
+                ),
+                "time_of_day": (
+                    option_keys(TIME_OF_DAY_OPTIONS),
+                    {"default": "Dusk"},
+                ),
+                "fill_style": (
+                    option_keys(LIGHTING_FILL_STYLE_OPTIONS),
+                    {"default": "Soft Fill"},
+                ),
+                "backlight": (
+                    option_keys(LIGHTING_BACKLIGHT_OPTIONS),
+                    {"default": "Rim Strip"},
+                ),
+                "practical": (
+                    option_keys(LIGHTING_PRACTICAL_OPTIONS),
+                    {"default": "Lantern Cluster"},
+                ),
+                "atmosphere": (
+                    option_keys(LIGHTING_ATMOSPHERE_OPTIONS),
+                    {"default": "Haze"},
+                ),
+                "color_gel": (
+                    option_keys(LIGHTING_COLOR_GEL_OPTIONS),
+                    {"default": "Teal & Orange"},
+                ),
+                "special_technique": (
+                    option_keys(LIGHTING_SPECIAL_TECHNIQUES),
+                    {"default": "Shutter Drag"},
+                ),
+                "energy_level": (
+                    option_keys(LIGHTING_ENERGY_LEVEL_OPTIONS),
+                    {"default": "Dynamic"},
+                ),
+                "safety_profile": (
+                    option_keys(LIGHTING_SAFETY_NOTES),
+                    {"default": "None"},
+                ),
                 "subject_description": ("STRING", {"multiline": True, "default": ""}),
                 "environment_description": ("STRING", {"multiline": True, "default": ""}),
                 "accent_notes": ("STRING", {"multiline": True, "default": ""}),
+                "camera_notes": ("STRING", {"multiline": True, "default": ""}),
                 "intensity_bias": ("FLOAT", {"default": 0.6, "min": 0.0, "max": 1.0, "step": 0.05}),
-                "blueprint_custom": ("STRING", {"default": ""}),
-                "key_style_custom": ("STRING", {"default": ""}),
-                "light_source_custom": ("STRING", {"default": ""}),
-                "light_quality_custom": ("STRING", {"default": ""}),
-                "time_of_day_custom": ("STRING", {"default": ""}),
-                "fill_style_custom": ("STRING", {"default": ""}),
-                "backlight_custom": ("STRING", {"default": ""}),
-                "practical_custom": ("STRING", {"default": ""}),
-                "atmosphere_custom": ("STRING", {"default": ""}),
-                "color_gel_custom": ("STRING", {"default": ""}),
-                "camera_settings_custom": ("STRING", {"default": ""}),
-                "special_technique_custom": ("STRING", {"default": ""}),
-                "energy_level_custom": ("STRING", {"default": ""}),
-                "safety_profile_custom": ("STRING", {"default": ""}),
                 "preset_action": (["none", "save", "load", "list"], {"default": "none"}),
                 "preset_name": ("STRING", {"default": ""}),
             },
@@ -72,42 +102,30 @@ class NoxPromptLightingMaster(PresetMixin):
 
     def illuminate(
         self,
-        blueprint,
-        key_style,
-        light_source="Daylight",
-        light_quality="Soft Light",
-        time_of_day="Dusk",
-        fill_style="Soft Fill",
-        backlight="Rim Strip",
-        practical="Lantern Cluster",
-        atmosphere="Haze",
-        color_gel="Teal & Orange",
-    camera_settings="None",
-        special_technique="Shutter Drag",
-        energy_level="Dynamic",
-        safety_profile="None",
-        blueprint_custom="",
-        key_style_custom="",
-        light_source_custom="",
-        light_quality_custom="",
-        time_of_day_custom="",
-        fill_style_custom="",
-        backlight_custom="",
-        practical_custom="",
-        atmosphere_custom="",
-        color_gel_custom="",
-    camera_settings_custom="",
-        special_technique_custom="",
-        energy_level_custom="",
-        safety_profile_custom="",
+    custom_prompt: str,
+    blueprint: str = "Three-Point",
+    key_style: str = "Softbox Key",
+    light_source: str = "Daylight",
+    light_quality: str = "Soft Light",
+    time_of_day: str = "Dusk",
+    fill_style: str = "Soft Fill",
+    backlight: str = "Rim Strip",
+    practical: str = "Lantern Cluster",
+    atmosphere: str = "Haze",
+    color_gel: str = "Teal & Orange",
+    special_technique: str = "Shutter Drag",
+    energy_level: str = "Dynamic",
+    safety_profile: str = "None",
         subject_description="",
         environment_description="",
         accent_notes="",
+        camera_notes="",
         intensity_bias=0.6,
         preset_action="none",
         preset_name="",
     ):
         config = {
+            "custom_prompt": custom_prompt,
             "blueprint": blueprint,
             "key_style": key_style,
             "light_source": light_source,
@@ -118,27 +136,13 @@ class NoxPromptLightingMaster(PresetMixin):
             "practical": practical,
             "atmosphere": atmosphere,
             "color_gel": color_gel,
-            "camera_settings": camera_settings,
             "special_technique": special_technique,
             "energy_level": energy_level,
             "safety_profile": safety_profile,
-            "blueprint_custom": blueprint_custom,
-            "key_style_custom": key_style_custom,
-            "light_source_custom": light_source_custom,
-            "light_quality_custom": light_quality_custom,
-            "time_of_day_custom": time_of_day_custom,
-            "fill_style_custom": fill_style_custom,
-            "backlight_custom": backlight_custom,
-            "practical_custom": practical_custom,
-            "atmosphere_custom": atmosphere_custom,
-            "color_gel_custom": color_gel_custom,
-            "camera_settings_custom": camera_settings_custom,
-            "special_technique_custom": special_technique_custom,
-            "energy_level_custom": energy_level_custom,
-            "safety_profile_custom": safety_profile_custom,
             "subject_description": subject_description,
             "environment_description": environment_description,
             "accent_notes": accent_notes,
+            "camera_notes": camera_notes,
             "intensity_bias": intensity_bias,
         }
 
@@ -149,6 +153,7 @@ class NoxPromptLightingMaster(PresetMixin):
             config,
         )
 
+        custom_prompt = config.get("custom_prompt", custom_prompt)
         blueprint = config.get("blueprint", blueprint)
         key_style = config.get("key_style", key_style)
         fill_style = config.get("fill_style", fill_style)
@@ -156,48 +161,34 @@ class NoxPromptLightingMaster(PresetMixin):
         practical = config.get("practical", practical)
         atmosphere = config.get("atmosphere", atmosphere)
         color_gel = config.get("color_gel", color_gel)
-        camera_settings = config.get("camera_settings", camera_settings)
         special_technique = config.get("special_technique", special_technique)
         energy_level = config.get("energy_level", energy_level)
         safety_profile = config.get("safety_profile", safety_profile)
-        blueprint_custom = config.get("blueprint_custom", blueprint_custom)
-        key_style_custom = config.get("key_style_custom", key_style_custom)
         light_source = config.get("light_source", light_source)
         light_quality = config.get("light_quality", light_quality)
         time_of_day = config.get("time_of_day", time_of_day)
-        light_source_custom = config.get("light_source_custom", light_source_custom)
-        light_quality_custom = config.get("light_quality_custom", light_quality_custom)
-        time_of_day_custom = config.get("time_of_day_custom", time_of_day_custom)
-        fill_style_custom = config.get("fill_style_custom", fill_style_custom)
-        backlight_custom = config.get("backlight_custom", backlight_custom)
-        practical_custom = config.get("practical_custom", practical_custom)
-        atmosphere_custom = config.get("atmosphere_custom", atmosphere_custom)
-        color_gel_custom = config.get("color_gel_custom", color_gel_custom)
-        camera_settings_custom = config.get("camera_settings_custom", camera_settings_custom)
-        special_technique_custom = config.get("special_technique_custom", special_technique_custom)
-        energy_level_custom = config.get("energy_level_custom", energy_level_custom)
-        safety_profile_custom = config.get("safety_profile_custom", safety_profile_custom)
         subject_description = config.get("subject_description", subject_description)
         environment_description = config.get("environment_description", environment_description)
         accent_notes = config.get("accent_notes", accent_notes)
+        camera_notes = config.get("camera_notes", camera_notes)
         intensity_bias = float(config.get("intensity_bias", intensity_bias))
-        blueprint_prompt, blueprint_notes = _resolve_with_custom(blueprint, blueprint_custom, LIGHTING_BLUEPRINT_OPTIONS)
-        key_prompt, key_notes = _resolve_with_custom(key_style, key_style_custom, LIGHTING_KEY_STYLE_OPTIONS)
-        source_prompt, source_notes = _resolve_with_custom(light_source, light_source_custom, LIGHT_SOURCE_OPTIONS)
-        quality_prompt, quality_notes = _resolve_with_custom(light_quality, light_quality_custom, LIGHT_QUALITY_OPTIONS)
-        time_prompt, time_notes = _resolve_with_custom(time_of_day, time_of_day_custom, TIME_OF_DAY_OPTIONS)
-        fill_prompt, fill_notes = _resolve_with_custom(fill_style, fill_style_custom, LIGHTING_FILL_STYLE_OPTIONS)
-        back_prompt, back_notes = _resolve_with_custom(backlight, backlight_custom, LIGHTING_BACKLIGHT_OPTIONS)
-        practical_prompt, practical_notes = _resolve_with_custom(practical, practical_custom, LIGHTING_PRACTICAL_OPTIONS)
-        atmosphere_prompt, atmosphere_notes = _resolve_with_custom(atmosphere, atmosphere_custom, LIGHTING_ATMOSPHERE_OPTIONS)
-        gel_prompt, gel_notes = _resolve_with_custom(color_gel, color_gel_custom, LIGHTING_COLOR_GEL_OPTIONS)
-        camera_prompt, camera_notes = _resolve_with_custom(camera_settings, camera_settings_custom, LIGHTING_CAM_SETTINGS)
-        technique_prompt, technique_notes = _resolve_with_custom(special_technique, special_technique_custom, LIGHTING_SPECIAL_TECHNIQUES)
-        energy_prompt, energy_notes = _resolve_with_custom(energy_level, energy_level_custom, LIGHTING_ENERGY_LEVEL_OPTIONS)
+        blueprint_prompt, blueprint_notes = _resolve_option(blueprint, LIGHTING_BLUEPRINT_OPTIONS)
+        key_prompt, key_notes = _resolve_option(key_style, LIGHTING_KEY_STYLE_OPTIONS)
+        source_prompt, source_notes = _resolve_option(light_source, LIGHT_SOURCE_OPTIONS)
+        quality_prompt, quality_notes = _resolve_option(light_quality, LIGHT_QUALITY_OPTIONS)
+        time_prompt, time_notes = _resolve_option(time_of_day, TIME_OF_DAY_OPTIONS)
+        fill_prompt, fill_notes = _resolve_option(fill_style, LIGHTING_FILL_STYLE_OPTIONS)
+        back_prompt, back_notes = _resolve_option(backlight, LIGHTING_BACKLIGHT_OPTIONS)
+        practical_prompt, practical_notes = _resolve_option(practical, LIGHTING_PRACTICAL_OPTIONS)
+        atmosphere_prompt, atmosphere_notes = _resolve_option(atmosphere, LIGHTING_ATMOSPHERE_OPTIONS)
+        gel_prompt, gel_notes = _resolve_option(color_gel, LIGHTING_COLOR_GEL_OPTIONS)
+        technique_prompt, technique_notes = _resolve_option(special_technique, LIGHTING_SPECIAL_TECHNIQUES)
+        energy_prompt, energy_notes = _resolve_option(energy_level, LIGHTING_ENERGY_LEVEL_OPTIONS)
 
         intensity_text = self._describe_intensity(intensity_bias)
 
         lighting_fragments = [
+            (custom_prompt or "").strip(),
             source_prompt,
             quality_prompt,
             time_prompt,
@@ -209,7 +200,6 @@ class NoxPromptLightingMaster(PresetMixin):
             atmosphere_prompt,
             gel_prompt,
             technique_prompt,
-            f"camera setup: {camera_prompt}" if camera_prompt else "",
             f"energy mode: {energy_prompt}" if energy_prompt else "",
             f"subject: {subject_description.strip()}" if subject_description.strip() else "",
             f"environment: {environment_description.strip()}" if environment_description.strip() else "",
@@ -239,28 +229,22 @@ class NoxPromptLightingMaster(PresetMixin):
         mood_notes = " | ".join(section for section in mood_sections if section)
 
         technical_sections = []
-        if camera_prompt:
-            technical_sections.append(f"Camera Settings: {camera_prompt}")
         if technique_prompt:
             technical_sections.append(f"Technique: {technique_prompt}")
         if technique_notes:
             technical_sections.append(f"Technique Notes: {technique_notes}")
         if energy_prompt:
             technical_sections.append(f"Energy Mode: {energy_prompt}")
-        safety_label = ""
-        safety_text = ""
-        if safety_profile == CUSTOM_OPTION:
-            safety_label = (safety_profile_custom or "").strip()
+        if camera_notes:
+            technical_sections.append(f"Camera Notes: {camera_notes}")
+        if safety_profile and safety_profile != "None":
+            safety_label = safety_profile.strip()
+            safety_text = (LIGHTING_SAFETY_NOTES.get(safety_profile, "") or "").strip()
             if safety_label:
-                safety_text = safety_label
-        elif safety_profile and safety_profile != "None":
-            safety_label = safety_profile
-            safety_text = LIGHTING_SAFETY_NOTES.get(safety_profile, "")
-        if safety_label:
-            if safety_text and safety_text != safety_label:
-                technical_sections.append(f"Safety: {safety_label} — {safety_text}")
-            else:
-                technical_sections.append(f"Safety: {safety_label}")
+                if safety_text and safety_text != safety_label:
+                    technical_sections.append(f"Safety: {safety_label} — {safety_text}")
+                else:
+                    technical_sections.append(f"Safety: {safety_label}")
         technical_notes = " | ".join(section for section in technical_sections if section)
 
         return (lighting_prompt, mood_notes, technical_notes, preset_status)
