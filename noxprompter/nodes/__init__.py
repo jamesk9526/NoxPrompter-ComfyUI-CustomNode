@@ -8,6 +8,7 @@ from .nox_prompt_builder import NoxPromptBuilder
 from .nox_prompt_blueprint_generator import NoxPromptBlueprintGenerator
 from .nox_prompt_camz import NoxPromptCamz
 from .nox_prompt_camera_language import NoxPromptCameraMaster, NoxPromptCameraLanguage
+from .nox_prompt_camera_selector import NoxPromptCameraSelector
 from .nox_prompt_character_creator import NoxPromptCharacterCreator
 from .nox_prompt_combiner import NoxPromptCombiner
 from .nox_prompt_enhancer import NoxPromptEnhancer
@@ -57,6 +58,7 @@ _NODE_CLASSES = (
     NoxPromptNSFWDesigner,
     NoxPromptNSFWPoseMaster,
     NoxPromptCamz,
+    NoxPromptCameraSelector,
     NoxPromptCombiner,
     NoxPromptPipelineCombiner,
     NoxPromptAnalyzer,
@@ -95,6 +97,7 @@ __all__ = [
     "NoxPromptLightingMaster",
     "NoxPromptCameraMaster",
     "NoxPromptCameraLanguage",
+    "NoxPromptCameraSelector",
     "NoxPromptNSFWDesigner",
     "NoxPromptNSFWPoseMaster",
     "NoxPromptCamz",

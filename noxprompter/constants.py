@@ -1468,6 +1468,91 @@ NSFW_ACTION_INTERACTION_OPTIONS = {
     "Tandem Pose": {"prompt": "tandem pose alignment, sculpted silhouettes, mutual balance", "summary": "Dual posing moment engineered for visual harmony."},
 }
 
+CAMERA_TYPES = {
+    "None": "",
+    "DSLR": "professional DSLR camera",
+    "Mirrorless": "high-end mirrorless camera",
+    "Film Camera": "classic film camera",
+    "Point-and-Shoot": "compact point-and-shoot camera",
+    "Action Camera": "rugged action camera",
+    "Smartphone": "high-resolution smartphone camera",
+    "Medium Format": "medium format camera",
+    "Large Format": "large format camera",
+    "Custom": "",
+}
+
+ISO_OPTIONS = {
+    "None": "",
+    "50": "ISO 50",
+    "100": "ISO 100",
+    "200": "ISO 200",
+    "400": "ISO 400",
+    "800": "ISO 800",
+    "1600": "ISO 1600",
+    "3200": "ISO 3200",
+    "6400": "ISO 6400",
+    "Custom": "",
+}
+
+FSTOP_OPTIONS = {
+    "None": "",
+    "f/1.4": "f/1.4 aperture",
+    "f/2.0": "f/2.0 aperture",
+    "f/2.8": "f/2.8 aperture",
+    "f/4.0": "f/4.0 aperture",
+    "f/5.6": "f/5.6 aperture",
+    "f/8.0": "f/8.0 aperture",
+    "f/11": "f/11 aperture",
+    "f/16": "f/16 aperture",
+    "f/22": "f/22 aperture",
+    "Custom": "",
+}
+
+SHUTTER_SPEED_OPTIONS = {
+    "None": "",
+    "1/8000": "1/8000s shutter speed",
+    "1/4000": "1/4000s shutter speed",
+    "1/2000": "1/2000s shutter speed",
+    "1/1000": "1/1000s shutter speed",
+    "1/500": "1/500s shutter speed",
+    "1/250": "1/250s shutter speed",
+    "1/125": "1/125s shutter speed",
+    "1/60": "1/60s shutter speed",
+    "1/30": "1/30s shutter speed",
+    "1/15": "1/15s shutter speed",
+    "1/8": "1/8s shutter speed",
+    "1/4": "1/4s shutter speed",
+    "1/2": "1/2s shutter speed",
+    "1s": "1s shutter speed",
+    "Custom": "",
+}
+
+LENS_FOCAL_LENGTHS = {
+    "None": "",
+    "16mm": "16mm lens",
+    "24mm": "24mm lens",
+    "35mm": "35mm lens",
+    "50mm": "50mm lens",
+    "85mm": "85mm lens",
+    "100mm": "100mm lens",
+    "135mm": "135mm lens",
+    "200mm": "200mm lens",
+    "300mm": "300mm lens",
+    "Custom": "",
+}
+
+WHITE_BALANCE_OPTIONS = {
+    "None": "",
+    "Auto": "auto white balance",
+    "Daylight": "daylight white balance",
+    "Cloudy": "cloudy white balance",
+    "Shade": "shade white balance",
+    "Tungsten": "tungsten white balance",
+    "Fluorescent": "fluorescent white balance",
+    "Flash": "flash white balance",
+    "Custom": "",
+}
+
 EMOTION_OPTIONS = {
     "None": {"prompt": "", "summary": "No explicit emotional cue."},
     "Anger": {"prompt": "fiery anger, clenched expression, intense gaze", "summary": "Emotion of anger and determination."},

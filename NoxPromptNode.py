@@ -81,6 +81,7 @@ NoxPromptCamz = _nodes.NoxPromptCamz
 NoxPromptCombiner = _nodes.NoxPromptCombiner
 NoxPromptPipelineCombiner = _nodes.NoxPromptPipelineCombiner
 NoxPromptAnalyzer = _nodes.NoxPromptAnalyzer
+NoxPromptCameraSelector = _nodes.NoxPromptCameraSelector
 
 NODE_CLASSES = tuple(_nodes.NODE_CLASSES)
 get_node_classes = _nodes.get_node_classes
@@ -129,6 +130,7 @@ _BASE_EXPORTS = [
     "NoxPromptCombiner",
     "NoxPromptPipelineCombiner",
     "NoxPromptAnalyzer",
+    "NoxPromptCameraSelector",
     "NODE_CLASSES",
     "get_node_classes",
 ]
